@@ -8,7 +8,7 @@ import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from '@mui/icons-material/Close';
 import en from '../lang/en/direct.json';
 import th from '../lang/th/direct.json';
 import Snackbar from '@mui/material/Snackbar';

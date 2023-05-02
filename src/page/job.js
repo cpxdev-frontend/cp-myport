@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {Timeline, TimelineEvent} from 'react-event-timeline'
-import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
-import StarsOutlinedIcon from '@material-ui/icons/StarsOutlined';
+import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+import StarsOutlinedIcon from '@mui/icons-material/StarsOutlined';
 import Typography from '@mui/material/Typography';
 import Slide from '@mui/material/Slide';
 import 'react-vertical-timeline-component/style.min.css';

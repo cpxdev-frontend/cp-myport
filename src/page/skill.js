@@ -6,9 +6,9 @@ import Grid from '@mui/material/Grid';
 import Slide from '@mui/material/Slide';
 import en from '../lang/en/skill.json';
 import th from '../lang/th/skill.json';
-import StarIcon from '@material-ui/icons/Star';
-import StarHalfIcon from '@material-ui/icons/StarHalf';
-import StarOutlineIcon from '@material-ui/icons/StarOutline';
+import StarIcon from '@mui/icons-material/Star';
+import StarHalfIcon from '@mui/icons-material/StarHalf';
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
 
 import Grow from '@mui/material/Grow';
 

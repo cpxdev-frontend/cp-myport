@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@mui/material/styles';
-import Carousel from 'react-material-ui-carousel'
 import { Grid, Typography, CardContent, Card, CardActionArea, Slide, Grow, Backdrop } from '@mui/material';
 import Covid from '../component/covidcom';
 import en from '../lang/en/home.json';
