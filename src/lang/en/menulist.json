@@ -7,30 +7,78 @@
       "label": "Graphic Mode: "
    },
    "menu": [
-        "Profile",
-        "Education",
-        "Internship & Job History",
-        "Developer Skill",
-        "Portfolio",
-        "Hobby & Interesting",
-        "Contact us",
-        "Setting",
-        "About",
-        "Access our profile with API",
-        "Document Library"
+        {
+            "name": "My Personal",
+            "list": [
+                {
+                    "path": "/profile",
+                    "name": "Profile"
+                },
+                {
+                    "path": "/education",
+                    "name": "Education"
+                },
+                {
+                    "path": "/job",
+                    "name": "Internship & Job History"
+                }
+            ]
+        },
+        {
+            "path": "/skill",
+            "name": "Developer Skill",
+            "list": null
+        },
+        {
+            "path": "/portfolio",
+            "name": "Portfolio",
+            "list": null
+        },
+        {
+            "path": "/hobby",
+            "name": "Hobby & Interesting",
+            "list": null
+        },
+        {
+            "path": "/contact",
+            "name": "Contact us",
+            "list": null
+        },
+        {
+            "name": "More options",
+            "list": [
+                {
+                    "path": "_setting",
+                    "name": "Setting"
+                },
+                {
+                    "path": "/api",
+                    "name": "API access"
+                },
+                {
+                    "path": "/docfiles",
+                    "name": "Document Library"
+                },
+                {
+                    "path": "_about",
+                    "name": "About"
+                }
+            ]
+        }
     ],
     "apicoming": "MyPort API service is under final testing. It's almost ready. Stay tuned.",
     "btnOK": "Close",
     "about": {
         "head": "About MyPort Website and Public API",
         "developName": "Developed by Chinnathorn Promnaruritr",
-        "desc": "MyPort Website is Chinnathorn's online Portfolio. It's design on React JS framework (Operated by Netlify)  and run undered by ASP.Net Core 3.1 Web API. We also have Public API called 'MyPort API' to access our contents similiar this site focused.",
-        "uptLog": "Update description: New Layout is beta."
+        "desc": "MyPort Website is Chinnathorn's online Portfolio. It's design on React JS framework (Operated by Cloudflare Pages)  and run undered by .NET 6 Web API. We also have Public API called 'MyPort API' to access our contents similiar this site focused.",
+        "uptLog": "Update description: Major update for User Interface Experience."
     },
     "setting": {
         "changeL": "Select language",
         "cReg": "Current Region",
-        "title": "Settings"
+        "title": "Settings",
+        "dark": "Dark Mode (Avaliable soon)"
     },
     "settingGuide": {
         "perfor": "Enable this feature will be reduce motion graphic and transition and better performance",

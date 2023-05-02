@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './App.css'
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -10,14 +11,48 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
+import {Avatar, Collapse, Dialog, Grow, DialogContent, DialogContentText, DialogActions, DialogTitle, TextField, Grid, Tooltip
+, FormControlLabel, Switch} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 import axios from 'axios';
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/dist/sweetalert2.min.css'
 import "aos/dist/aos.css";
+
+import AOS from 'aos'
+import { connect } from 'react-redux';
+
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+
+import {
+  useHistory,
+  Route,
+  Link,
+  Switch as BasicSwitch,
+} from "react-router-dom";
+
+import {
+  setLoad, setLang, setDarkMode, setPage
+} from './redux/action';
+
+import Home from './page/home';
+import Profile from './page/profile';
+import Education from './page/edu';
+import Job from './page/job';
+import Skill from './page/skill';
+import Portfolio from './page/port';
+import Hobby from './page/hobby';
+import Contact from './page/contact';
+// import Vac from './page/vaccined';
+import Doc from './page/document';
+import ApiDoc from './page/apidoc';
+import ErrorPage from './page/404';
 
 import en from '../src/lang/en/menulist.json';
 import th from '../src/lang/th/menulist.json';
@@ -38,36 +73,133 @@ const langlist = [
 ];
 
 function DrawerAppBar(props) {
-  const { window } = props;
+  const {window,setDarkMode, setLang, setPage, CurrentLang, currentPage} = props
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [Lang, setLang] = React.useState(th);
+  const [MenuSession, setMenuSession] = React.useState(null);
+  const [Lang, setLangMenu] = React.useState(CurrentLang == 'th' ? th : en);
+  const [MenuSessionMobile, setMenuSessionMobile] = React.useState(null);
+  const [formopen, setFormOpen] = React.useState({contact: false, api: false});
 
+  const [open, setOpen] = React.useState(false);
+  const [savedLat, setLat] = React.useState(0);
+  const [apiopen, setApiOpen] = React.useState(false);
+  const [setting, setSetting] = React.useState(false);
+  const [graph, setGraph] = React.useState(false);
+
+
+
+
+  const history = useHistory()
+
+  const graphicFunc = () => {
+    if (localStorage.getItem('graphic') !== null) {
+      localStorage.removeItem('graphic');
+      setGraph(false)
+    } else {
+      localStorage.setItem('graphic', 't');
+      setGraph(true)
+    }
+  }
+  const setupLang = (language) => {
+    localStorage.setItem('langconfig', language);
+    if (language === 'th') {
+      setLangMenu(th);
+      setLang('th')
+    } else {
+      setLangMenu(en);
+      setLang('en')
+    }
+  };
+
+  React.useEffect(() => {
+    AOS.init({ duration: 800 });
+  }, [])
+
+
+  React.useEffect(() => {
+    document.title = currentPage + ' | MyPort Site Official'
+  }, [currentPage])
+
+  const ActionNotPath = (act) => {
+    const action = act.replace('_', '');
+    if (action == 'setting') {
+      setSetting(true)
+    }
+    if (action == 'about') {
+      setApiOpen(true)
+    }
+  }
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+    <Box sx={{ textAlign: 'center' }}>
+      <Typography variant="h6" sx={{ my: 2 }} onClick={() => history.push('/')} className='point'>
+        MyPort Site
       </Typography>
       <Divider />
       <List>
-        {Lang.menu.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
+        {Lang.menu.map((item, i) => (
+          <>
+          <ListItem key={'menuhead-' + i} disablePadding>
+            <ListItemButton onClick={() => {
+              item.list != null ? setMenuSessionMobile(item.list != null && MenuSessionMobile != i ? i : item.list != null && MenuSessionMobile == i ? null : null) : setMenuSessionMobile(null);
+              item.list == null && history.push(item.path);
+              item.list == null && handleDrawerToggle()
+            }} sx={{ paddingLeft: 4 }}>
+              <ListItemText primary={item.name} secondary={null} />
+              {item.list != null && (
+                <>
+                  {MenuSessionMobile == i ? <ExpandLess /> : <ExpandMore />}
+                </>
+              )}
             </ListItemButton>
           </ListItem>
+          
+        {MenuSessionMobile == i && (
+            <Collapse in={MenuSessionMobile != null} className='border rounded' timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                {Lang.menu[MenuSessionMobile].list.map((itm) => (
+                <ListItemButton onClick={() => {
+                  itm.path.includes('_') ? ActionNotPath(itm.path) : history.push(itm.path);
+                  handleDrawerToggle()
+                }} data-aos="fade-right" sx={{ pl: 5 }}>
+                  <ListItemText primary={itm.name} />
+                </ListItemButton>
+                ))}
+              </List>
+            </Collapse>
+            )}
+          </>
         ))}
       </List>
     </Box>
   );
 
+    const renderMenu = (item, i) => {
+      return (
+        <Menu
+          anchorEl={MenuSession.e.target}
+          open={i == MenuSession.index ? true : false}
+          onClose={() => setMenuSession(null)}
+        >
+          {item.map((itm) => (
+            <MenuItem onClick={() => {
+              (itm.path.includes('_') ? ActionNotPath(itm.path) : history.push(itm.path))
+              setMenuSession(null)
+            }}>{itm.name}</MenuItem>
+          ))}
+        </Menu>
+      )
+    }
+
+    
+
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box>
       <CssBaseline />
       <AppBar component="nav">
         <Toolbar>
@@ -80,18 +212,27 @@ function DrawerAppBar(props) {
           >
             <MenuIcon />
           </IconButton>
+          <Avatar src='https://cdn.statically.io/gl/cpx2017/cpxcdnbucket@main/myport/avatar.webp' />
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            className='point'
+            sx={{ flexGrow: 1, marginLeft: 2, display: { xs: 'none', sm: 'block' } }}
+            onClick={() => history.push('/')}
           >
-            MUI
+            MyPort Site
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {Lang.menu.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
-                {item}
+            {Lang.menu.map((item, i) => (
+              <>
+              <Button key={'menuhead-' + i} onClick={(e) => item.list != null ? setMenuSession({
+                index: i,
+                e: e
+              }) : (item.path.includes('_') ? ActionNotPath(item.path) : history.push(item.path))} sx={{ color: '#fff' }}>
+                {item.name}
               </Button>
+              {item.list != null && MenuSession != null && renderMenu(item.list,i)}
+              </>
             ))}
           </Box>
         </Toolbar>
@@ -113,45 +254,142 @@ function DrawerAppBar(props) {
           {drawer}
         </Drawer>
       </Box>
-      <Box component="main" sx={{ p: 3 }}>
+      <div style={{ marginTop: 20, marginBottom: 100 }}>
         <Toolbar />
-        <Typography>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
-          fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
-          aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis in
-          cum quibusdam sed quae, accusantium et aperiam? Quod itaque exercitationem,
-          at ab sequi qui modi delectus quia corrupti alias distinctio nostrum.
-          Minima ex dolor modi inventore sapiente necessitatibus aliquam fuga et. Sed
-          numquam quibusdam at officia sapiente porro maxime corrupti perspiciatis
-          asperiores, exercitationem eius nostrum consequuntur iure aliquam itaque,
-          assumenda et! Quibusdam temporibus beatae doloremque voluptatum doloribus
-          soluta accusamus porro reprehenderit eos inventore facere, fugit, molestiae
-          ab officiis illo voluptates recusandae. Vel dolor nobis eius, ratione atque
-          soluta, aliquam fugit qui iste architecto perspiciatis. Nobis, voluptatem!
-          Cumque, eligendi unde aliquid minus quis sit debitis obcaecati error,
-          delectus quo eius exercitationem tempore. Delectus sapiente, provident
-          corporis dolorum quibusdam aut beatae repellendus est labore quisquam
-          praesentium repudiandae non vel laboriosam quo ab perferendis velit ipsa
-          deleniti modi! Ipsam, illo quod. Nesciunt commodi nihil corrupti cum non
-          fugiat praesentium doloremque architecto laborum aliquid. Quae, maxime
-          recusandae? Eveniet dolore molestiae dicta blanditiis est expedita eius
-          debitis cupiditate porro sed aspernatur quidem, repellat nihil quasi
-          praesentium quia eos, quibusdam provident. Incidunt tempore vel placeat
-          voluptate iure labore, repellendus beatae quia unde est aliquid dolor
-          molestias libero. Reiciendis similique exercitationem consequatur, nobis
-          placeat illo laudantium! Enim perferendis nulla soluta magni error,
-          provident repellat similique cupiditate ipsam, et tempore cumque quod! Qui,
-          iure suscipit tempora unde rerum autem saepe nisi vel cupiditate iusto.
-          Illum, corrupti? Fugiat quidem accusantium nulla. Aliquid inventore commodi
-          reprehenderit rerum reiciendis! Quidem alias repudiandae eaque eveniet
-          cumque nihil aliquam in expedita, impedit quas ipsum nesciunt ipsa ullam
-          consequuntur dignissimos numquam at nisi porro a, quaerat rem repellendus.
-          Voluptates perspiciatis, in pariatur impedit, nam facilis libero dolorem
-          dolores sunt inventore perferendis, aut sapiente modi nesciunt.
-        </Typography>
-      </Box>
+        <BasicSwitch>
+                <Route exact path="/" render={() => <Home />} />
+                <Route path="/profile" render={() => <Profile />} />
+                <Route path="/education" render={() => <Education />} />
+                <Route path="/job" render={() => <Job />} />
+                <Route path="/skill" render={() => <Skill />} />
+                <Route path="/portfolio" render={() => <Portfolio />} />
+                <Route path="/hobby" render={() => <Hobby />} />
+                <Route path="/contact" render={() => <Contact col={formopen} setCol={(val) => setFormOpen({...formopen, contact: val})} />} />
+                {/* <Route path="/vaccinated" render={() => <Vac />} /> */}
+                <Route path="/docfiles" render={() => <Doc />} />
+                <Route path="/api" render={() => <ApiDoc col={formopen} setCol={(val) => setFormOpen({...formopen, api: val})} />} />
+                <Route render={() => <ErrorPage />} />
+              </BasicSwitch>
+      </div>
+      <footer class="fixed-bottom text-center bg-light p-3">
+        Copyright 2023 CPXDev Studio, Allright Reserved
+      </footer>
+
+
+
+
+
+
+      <Dialog
+          TransitionComponent={Grow}
+          transitionDuration={localStorage.getItem('graphic') === null ? 500 : 200}
+          open={apiopen}
+          onClose={() => setApiOpen(false)}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          maxWidth="xl"
+        >
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+            <Typography variant="h5">
+                {Lang.about.head}
+              </Typography>
+            <Divider />
+              <Typography>
+                {Lang.about.developName}
+              </Typography>
+            <br />
+              <Typography>
+                {Lang.about.desc}
+              </Typography>
+            <br />
+              <Typography>
+                {Lang.about.uptLog}
+              </Typography>
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setApiOpen(false)} color="secondary">
+              {Lang.btnOK}
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Dialog
+          TransitionComponent={Grow}
+          transitionDuration={localStorage.getItem('graphic') === null ? 500 : 200}
+          open={setting}
+          onClose={() => setSetting(false)}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description2"
+          maxWidth="lg"
+        >
+          <DialogTitle id="alert-dialog-title">{Lang.setting.title}</DialogTitle>
+          <DialogContent className='pt-3'>
+            <DialogContentText id="alert-dialog-description2">
+              <TextField
+            select
+            label={Lang.setting.changeL}
+            onChange={(e) => setupLang(e.target.value)}
+            value={CurrentLang}
+          >
+            {langlist.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                <Grid container spacing={3}>
+                  <Grid item md={4}>
+                    <Avatar src={option.flag} sx={{ width: 25, height: 25 }} />
+                  </Grid>
+                  <Grid item md style={{ marginTop: 2 }}>
+                    {option.label}
+                  </Grid>
+                </Grid>
+              </MenuItem>
+            ))}
+          </TextField>
+          <br />
+          <Tooltip enterDelay={1000} title={Lang.settingGuide.perfor}>
+            <FormControlLabel
+              control={
+                <Switch
+                  defaultChecked={graph}
+                  color="primary"
+                  onChange={graphicFunc}
+                />
+              }
+              label={Lang.reducemode.label + (graph ? Lang.reducemode.on : Lang.reducemode.off)}
+            />
+          </Tooltip>
+          <br />
+          <FormControlLabel
+              control={
+                <Switch
+                  defaultChecked={false}
+                  color="primary"
+                  disabled={true}
+                />
+              }
+              label={Lang.setting.dark}
+            />
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setSetting(false)} color="secondary">
+              {Lang.btnOK}
+            </Button>
+          </DialogActions>
+        </Dialog>
     </Box>
   );
 }
 
-export default DrawerAppBar;
+const mapStateToProps = (state) => ({
+  dark: state.dark,
+  CurrentLang: state.CurrentLang,
+  currentPage: state.currentPage,
+  endpoint: state.endpoint,
+});
+const mapDispatchToProps = (dispatch) => ({
+  setDark: (val) => dispatch(setDarkMode(val)),
+  setLang: (val) => dispatch(setLang(val)),
+  setPage: (val) => dispatch(setPage(val))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(DrawerAppBar);
