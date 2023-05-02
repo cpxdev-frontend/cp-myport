@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@mui/material/styles';
 import { Grid, Typography, CardContent, Card, CardActionArea, Slide, Grow, Backdrop } from '@mui/material';
-import Covid from '../component/covidcom';
 import en from '../lang/en/home.json';
 import th from '../lang/th/home.json';
 import BillCom from '../component/billboard';
