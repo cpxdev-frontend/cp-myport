@@ -43,9 +43,15 @@
 .MuiAppBar-root{
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  background-color: #44ad67 !important;
 }
 
 .selectedborder{
   border-style:solid;
-  border-left-width: medium !important;
+  border-color: #44ad67 !important;
+  border-left-width: 5px !important;
+}
+
+.border-top{
+  border-top-width: 2px !important;
 }
