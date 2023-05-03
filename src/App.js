@@ -34,6 +34,7 @@ import {
   useHistory,
   Route,
   Link,
+  useLocation,
   Switch as BasicSwitch,
 } from "react-router-dom";
 
@@ -87,9 +88,10 @@ function DrawerAppBar(props) {
   const [graph, setGraph] = React.useState(false);
 
 
-
+  const [mainMenu, setMainMenu] = React.useState(null);
 
   const history = useHistory()
+const location = useLocation()
 
   const graphicFunc = () => {
     if (localStorage.getItem('graphic') !== null) {
@@ -118,6 +120,25 @@ function DrawerAppBar(props) {
 
   React.useEffect(() => {
     document.title = currentPage + ' | MyPort Site Official'
+    let tabindex = Lang.menu.findIndex((item) => item.path == location.pathname);
+    if (tabindex == -1) {
+      for(let menuIndex = 0; menuIndex < Lang.menu.length;  menuIndex++){
+        if (Lang.menu[menuIndex].list != null) {
+          const tempIndex = Lang.menu[menuIndex].list.findIndex((itm) => itm.path === location.pathname);
+          if (tempIndex != -1) {
+            tabindex = menuIndex;
+            break;
+          }
+        }
+      }
+      if (tabindex != -1) {
+        setMainMenu(tabindex)
+      } else {
+        setMainMenu(null)
+      }
+    } else {
+      setMainMenu(tabindex)
+    }
   }, [currentPage])
 
   const ActionNotPath = (act) => {
@@ -147,7 +168,7 @@ function DrawerAppBar(props) {
               item.list != null ? setMenuSessionMobile(item.list != null && MenuSessionMobile != i ? i : item.list != null && MenuSessionMobile == i ? null : null) : setMenuSessionMobile(null);
               item.list == null && history.push(item.path);
               item.list == null && handleDrawerToggle()
-            }} sx={{ paddingLeft: 4 }}>
+            }} sx={{ paddingLeft: 4 }} className={mainMenu == i ? 'border-left selectedborder border-dark':''}>
               <ListItemText primary={item.name} secondary={null} />
               {item.list != null && (
                 <>
@@ -228,7 +249,7 @@ function DrawerAppBar(props) {
               <Button key={'menuhead-' + i} onClick={(e) => item.list != null ? setMenuSession({
                 index: i,
                 e: e
-              }) : (item.path.includes('_') ? ActionNotPath(item.path) : history.push(item.path))} sx={{ color: '#fff' }}>
+              }) : (item.path.includes('_') ? ActionNotPath(item.path) : history.push(item.path))} sx={{ color: '#fff' }} className={mainMenu == i ? 'border-top':''}>
                 {item.name}
               </Button>
               {item.list != null && MenuSession != null && renderMenu(item.list,i)}

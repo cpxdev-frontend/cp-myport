@@ -37,13 +37,7 @@
             "src": "https://cdn.statically.io/gl/cpx2017/cpxcdnbucket@main/myport/work-5.webp",
             "link": ""
         },
-        {
-          "title": "Staff Hub Connect API - Link to Line Official Account",
-          "group": ".NET 6 Web API",
-          "src": "https://cdn.statically.io/gl/cpx2017/cpxcdnbucket@main/myport/work-6.webp",
-          "desc": "It's Human Resource management system undered LINE official Account (Vendor will be responsible for the development of the LINE OA section). I am developed API system to be Vendor able to access related system resources.",
-          "link": ""
-        },
+      
         {
             "title": "T-POP Megaverse Platform",
             "group": "React JS with .NET Core 3.1 Web API",

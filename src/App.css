@@ -40,3 +40,12 @@
 .point{
   cursor: pointer !important;
 }
+.MuiAppBar-root{
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.selectedborder{
+  border-style:solid;
+  border-left-width: medium !important;
+}
