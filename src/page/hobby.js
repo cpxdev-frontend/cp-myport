@@ -272,7 +272,7 @@ const Hob = ({setPage, endpoint}) => {
                     
           <Dialog
             TransitionComponent={Grow}
-            transitionDuration={localStorage.getItem('graphic') === null ? 500 : 200}
+            transitionDuration={localStorage.getItem('graphic') === null ? 900 : 0}
             open={songPreview}
             onClose={() => {
                 setPreview(false);

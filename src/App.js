@@ -12,7 +12,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import {Avatar, Collapse, Dialog, Grow, DialogContent, DialogContentText, DialogActions, DialogTitle, TextField, Grid, Tooltip
-, FormControlLabel, Switch} from '@mui/material';
+, FormControlLabel, Switch, Slide} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -74,7 +74,7 @@ const langlist = [
 ];
 
 function DrawerAppBar(props) {
-  const {window,setDarkMode, setLang, setPage, CurrentLang, currentPage} = props
+  const {window,setDark, setLang, setPage, CurrentLang, currentPage, dark} = props
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [MenuSession, setMenuSession] = React.useState(null);
   const [Lang, setLangMenu] = React.useState(CurrentLang == 'th' ? th : en);
@@ -116,6 +116,20 @@ const location = useLocation()
   React.useEffect(() => {
     AOS.init({ duration: 800 });
   }, [])
+
+
+  React.useEffect(() => {
+    if (dark == true) {
+      localStorage.setItem('dark', '');
+    } else {
+      localStorage.removeItem('dark');
+    }
+    if (dark) {
+      document.getElementById('root').style.backgroundColor = '#333333'
+    } else {
+      document.getElementById('root').style.backgroundColor = '#e8e8e8'
+    }
+  }, [dark])
 
 
   React.useEffect(() => {
@@ -222,7 +236,8 @@ const location = useLocation()
   return (
     <Box>
       <CssBaseline />
-      <AppBar component="nav">
+     <Slide direction='down' in={true} timeout={localStorage.getItem('graphic') === null ? 900 : 0}>
+     <AppBar component="nav">
         <Toolbar>
           <IconButton
             color="inherit"
@@ -258,6 +273,7 @@ const location = useLocation()
           </Box>
         </Toolbar>
       </AppBar>
+     </Slide>
       <Box component="nav">
         <Drawer
           container={container}
@@ -275,7 +291,7 @@ const location = useLocation()
           {drawer}
         </Drawer>
       </Box>
-      <div style={{ marginTop: 20, marginBottom: 100 }}>
+      <div style={{ marginTop: 20, paddingBottom: 100 }}>
         <Toolbar />
         <BasicSwitch>
                 <Route exact path="/" render={() => <Home />} />
@@ -292,7 +308,7 @@ const location = useLocation()
                 <Route render={() => <ErrorPage />} />
               </BasicSwitch>
       </div>
-      <footer class="fixed-bottom text-center bg-light p-3">
+      <footer class={"fixed-bottom text-center p-3" + (dark ? '' : ' bg-light')} style={{backgroundColor: dark ? '#7d7d7d' : ''}}>
         Copyright 2023 CPXDev Studio, Allright Reserved
       </footer>
 
@@ -383,9 +399,9 @@ const location = useLocation()
           <FormControlLabel
               control={
                 <Switch
-                  defaultChecked={false}
+                  defaultChecked={dark}
                   color="primary"
-                  disabled={true}
+                  onChange={() => setDark(!dark)}
                 />
               }
               label={Lang.setting.dark}

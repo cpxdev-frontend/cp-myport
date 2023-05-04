@@ -57,19 +57,11 @@ const Profile = ({setPage}) => {
     <CardActionArea>
       <CardContent>
         <Grid container spacing={3}>
-          {window.innerWidth > 600 ? (
-            <Slide direction="right" in={true} timeout={localStorage.getItem('graphic') === null ? 500 : 0}>
+        <Slide direction="right" in={true} timeout={localStorage.getItem('graphic') === null ? 500 : 0}>
             <Grid item sm md={3} className='d-flex justify-content-center align-items-center'>
-                <Avatar sx={{width: '60%', height: '90%'}} alt="" src="https://ik.imagekit.io/cpxstorage/fanspaceprofile/prof" />
+                <Avatar sx={{width: '100%', height: '100%'}} alt="" src="https://ik.imagekit.io/cpxstorage/myport/prof" />
             </Grid>
         </Slide>
-          ) : (
-            <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 1200 : 0}>
-              <Grid item sm md className='d-flex justify-content-center align-items-center'>
-                  <Avatar sx={{width: '100%', height: '100%'}} alt="" src="https://ik.imagekit.io/cpxstorage/fanspaceprofile/prof" />
-              </Grid>
-          </Grow>
-          )}
            {window.innerWidth > 600 ? (
              <Slide direction="left" in={true} timeout={localStorage.getItem('graphic') === null ? 800 : 0}>
              <Grid item sm md={9}>

@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
 //     },
 //   }));
 
-const Home = ({setPage}) => {
+const Home = ({setPage, dark}) => {
   React.useEffect(() => {
     setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? 'หน้าหลัก' : 'Homepage')
   }, [])
@@ -47,7 +47,7 @@ const Home = ({setPage}) => {
     <div className='container'>
      {
              Lang.slide.map((item, i) => (
-                <BillCom key={i} item={item} i={i} />
+                <BillCom key={i} dark={dark} item={item} i={i} />
              ))
          }
     </div>

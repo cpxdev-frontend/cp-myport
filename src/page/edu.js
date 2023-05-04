@@ -95,12 +95,12 @@ const Edu = ({setPage}) => {
               </AccordionSummary>
               <AccordionDetails>
                <List>
-                <ListItem alignItems="flex-start">
+               <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 1400 : 0}>
+               <ListItem alignItems="flex-start">
                     <ListItemAvatar>
                         <Avatar data-aos='fade-in' src={item.edulogo} />
                     </ListItemAvatar>
                     <ListItemText
-                    data-aos='fade-right'
                     primary={item.locate}
                     secondary={
                         <React.Fragment>
@@ -117,6 +117,7 @@ const Edu = ({setPage}) => {
                     }
                     />
                 </ListItem>
+                </Grow>
                </List>
               </AccordionDetails>
             </Accordion>

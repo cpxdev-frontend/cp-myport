@@ -1,6 +1,6 @@
 const initialState = {
     CurrentLang: localStorage.getItem('langconfig') != null ? localStorage.getItem('langconfig') : 'en',
-    dark: false,
+    dark: localStorage.getItem('dark') != null ? true : false,
     currentPage: 'Loading',
     endpoint: {
       web: 'https://cpxdevapi.azurewebsites.net',

@@ -15,9 +15,6 @@ const theme = createTheme({
     fontFamily: 'anakotmai',
   },
   palette: {
-    background: {
-      default: "#e8e8e8"
-    },
     secondary: {
       light: '#fff',
       main: '#1976d2',
