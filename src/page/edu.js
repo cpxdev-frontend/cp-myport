@@ -97,9 +97,11 @@ const Edu = ({setPage, dark}) => {
                <List>
                <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 1400 : 0}>
                <ListItem alignItems="flex-start">
+                    <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 900 : 0}>
                     <ListItemAvatar>
-                        <Avatar data-aos='fade-in' src={item.edulogo} />
+                        <Avatar src={item.edulogo} />
                     </ListItemAvatar>
+                    </Grow>
                     <ListItemText
                     primary={<h6 className={dark ? 'text-light' : ''}>{item.locate}</h6>}
                     secondary={

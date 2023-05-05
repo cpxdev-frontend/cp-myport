@@ -19,6 +19,8 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import SettingsIcon from '@mui/icons-material/Settings';
+import InfoIcon from '@mui/icons-material/Info';
 import axios from 'axios';
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/dist/sweetalert2.min.css'
@@ -203,10 +205,10 @@ const location = useLocation()
 
   const drawer = (
     <Box sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }} onClick={() => history.push('/')} className='point'>
+      <Typography variant="h6" sx={{ my: 2 }} onClick={() => history.push('/')} className={'point' + (dark ? ' text-light' : '')}>
         MyPort Site
       </Typography>
-      <Divider />
+      <Divider className={dark ? 'border-light' : ''} />
       <List>
         {Lang.menu.map((item, i) => (
           <>
@@ -216,10 +218,10 @@ const location = useLocation()
               item.list == null && history.push(item.path);
               item.list == null && handleDrawerToggle()
             }} sx={{ paddingLeft: 4 }} className={mainMenu == i ? 'border-left selectedborder border-dark':''}>
-              <ListItemText primary={item.name} secondary={null} />
+              <ListItemText className={dark ? 'text-light' : ''} primary={item.name} secondary={null} />
               {item.list != null && (
                 <>
-                  {MenuSessionMobile == i ? <ExpandLess /> : <ExpandMore />}
+                  {MenuSessionMobile == i ? <ExpandLess className={dark ? 'text-light' : ''} /> : <ExpandMore className={dark ? 'text-light' : ''} />}
                 </>
               )}
             </ListItemButton>
@@ -233,7 +235,7 @@ const location = useLocation()
                   itm.path.includes('_') ? ActionNotPath(itm.path) : history.push(itm.path);
                   handleDrawerToggle()
                 }} data-aos="fade-right" sx={{ pl: 5 }}>
-                  <ListItemText primary={itm.name} />
+                  <ListItemText className={dark ? 'text-dark-secondary' : 'text-secondary'} primary={itm.name} />
                 </ListItemButton>
                 ))}
               </List>
@@ -286,7 +288,7 @@ const location = useLocation()
             variant="h6"
             component="div"
             className='point'
-            sx={{ flexGrow: 1, marginLeft: 2, display: { xs: 'none', sm: 'block' } }}
+            sx={{ flexGrow: 1, marginLeft: 2, display: { xs: 'none', sm: 'flex' } }}
             onClick={() => history.push('/')}
           >
             MyPort Site
@@ -304,6 +306,27 @@ const location = useLocation()
               </>
             ))}
           </Box>
+          <Typography
+            sx={{ flexGrow: 1,  display: { sm: 'flex', md: 'none' } }}
+            onClick={() => history.push('/')}
+          >
+          </Typography>
+          <Box sx={{ flexGrow: 0, display: { sm: 'flex', md:'none' } }}>
+          <IconButton
+            color="inherit"
+            onClick={() => setSetting(true)}
+          >
+            <SettingsIcon />
+          </IconButton>
+          </Box>
+          <Box sx={{ flexGrow: 0, display: { sm: 'flex', md:'none' } }}>
+          <IconButton
+            color="inherit"
+            onClick={() => setApiOpen(true)}
+          >
+            <InfoIcon />
+          </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
      </Slide>
@@ -315,6 +338,11 @@ const location = useLocation()
           onClose={handleDrawerToggle}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
+          }}
+          PaperProps={{
+            sx: {
+              backgroundColor: dark ? '#011345' : ''
+            }
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
