@@ -82,7 +82,7 @@ let time;
 //         fontWeight: theme.typography.fontWeightRegular,
 //       }
 //   }));
-const Doc = ({setPage, endpoint}) => {
+const Doc = ({setPage, endpoint, dark}) => {
   React.useEffect(() => {
     setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? th.title : en.title)
   }, [])
@@ -148,15 +148,15 @@ const Doc = ({setPage, endpoint}) => {
         <div className='pl-3 pr-3'>
           <Slide direction="right" in={true} timeout={localStorage.getItem('graphic') === null ? 600 : 0}>
             <div>
-            <CardHeader title={(<Typography variant="h5">{Lang.title}</Typography>)} subheader={Lang.provider} />
+            <CardHeader title={(<Typography variant="h5" className={dark ? 'text-light' : ''}>{Lang.title}</Typography>)} subheader={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.provider}</p>} />
             </div>
           </Slide>
-          <hr />
+          <hr className={dark ? 'border-light' : ''} />
           <br/>
             <div className='row'>
              {arr.length > 0 && arr.map((item, i) => (
-              <Card className='col-md-6 mb-2' key={item.id}>
-              <CardHeader className='d-block mt-3' title={(<h5 style={{wordWrap: 'break-word'}}>{item.title}</h5>)} subheader={Lang.objupt + moment.utc(item.modifiedDate).local().format('DD MMMM YYYY HH:mm')}/>
+              <Card className='col-md-6 mb-2' key={item.id} sx={{backgroundColor: dark ? '#011345' : ''}}>
+              <CardHeader className='d-block mt-3' title={(<h5 style={{wordWrap: 'break-word'}} className={dark ? 'text-light' : ''}>{item.title}</h5>)} subheader={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.objupt + moment.utc(item.modifiedDate).local().format('DD MMMM YYYY HH:mm')}</p>}/>
                 <CardActionArea>
                   <CardContent className='col-md-12'>
                     <div className='row'>
@@ -164,16 +164,16 @@ const Doc = ({setPage, endpoint}) => {
                     <img src={item.thumbnailLink.replace('s220','s600')} width={(item.imageMediaMetadata != undefined && item.imageMediaMetadata.width > item.imageMediaMetadata.height) || item.imageMediaMetadata == undefined ? '100%' : null} height={item.imageMediaMetadata != undefined && item.imageMediaMetadata.width < item.imageMediaMetadata.height ? 300 : null} />
                     </div>
                     <div className='col-md ml-3'>
-                    <Typography className='text-muted' variant="body1">{Lang.objsize + (parseInt(item.fileSize) > 1048576 ? (parseInt(item.fileSize) / 1048576).toFixed(2)  + " MB" : (parseInt(item.fileSize) / 1000).toFixed(2) + ' KB')}</Typography>
-                      <Typography className='text-muted' variant="body1">{Lang.objtype + item.mimeType}</Typography>
+                    <Typography className={dark ? 'text-dark-secondary' : 'text-muted'} variant="body1">{Lang.objsize + (parseInt(item.fileSize) > 1048576 ? (parseInt(item.fileSize) / 1048576).toFixed(2)  + " MB" : (parseInt(item.fileSize) / 1000).toFixed(2) + ' KB')}</Typography>
+                      <Typography className={dark ? 'text-dark-secondary' : 'text-muted'} variant="body1">{Lang.objtype + item.mimeType}</Typography>
                     </div>
                     </div> 
                     <hr />
                     <CardActions>
-                      <Button size="small" color="secondary" onClick={() => window.open(item.alternateLink, '_blank')}>
+                      <Button size="small" sx={{color: dark ? '#fff' : '#000'}} onClick={() => window.open(item.alternateLink, '_blank')}>
                         View
                       </Button>
-                      <Button size="small" color="secondary" onClick={() => window.open(item.webContentLink, '_blank')}>
+                      <Button size="small" sx={{color: dark ? '#44ad67' : '#648cfa'}} onClick={() => window.open(item.webContentLink, '_blank')}>
                         Download
                       </Button>
                     </CardActions>

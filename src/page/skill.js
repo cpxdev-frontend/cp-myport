@@ -32,7 +32,7 @@ import { connect } from 'react-redux';
 //     },
 //   }));
 
-const Skill = ({setPage}) => {
+const Skill = ({setPage, dark}) => {
   React.useEffect(() => {
     setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? th.title : en.title)
   }, [])
@@ -55,37 +55,37 @@ const Skill = ({setPage}) => {
     return (
         <div className='pl-3 pr-3'>
           <Slide direction="right" in={true} timeout={localStorage.getItem('graphic') === null ? 600 : 0}>
-            <Typography variant="h5">{Lang.title}</Typography>
+            <Typography variant="h5" className={dark ? 'text-light' : ''}>{Lang.title}</Typography>
           </Slide>
-            <hr/>
+            <hr className={dark ? 'border-light' : ''} />
             <Grid container spacing={3}>
                 {Lang.list.map((item, i) => (
                     <Grid item xs={12} sm={6} key={i + 1}>
                         <Paper>
-                            <Card >
-                                <CardContent>
+                            <Card>
+                                <CardContent sx={{backgroundColor: dark ? '#011345' : ''}}>
                                   <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 800 : 0}>
-                                    <Typography variant="h6">
+                                    <Typography className={dark ? 'text-light' : ''} variant="h6">
                                       {item.title} - {item.group}
                                     </Typography>
                                   </Grow>
-                                    <hr />
+                                    <hr className={dark ? 'border-light' : ''} />
                                   <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 1100 : 0}>
                                     <Typography variant="body2">
                                         {item.learnrate.map((star, i2) => {
                                             if (star === 2) {
-                                                return (<StarIcon color="gold" fontSize="small" key={'key' + i2} />)
+                                                return (<StarIcon className={dark ? 'text-light' : ''} color="gold" fontSize="small" key={'key' + i2} />)
                                             } else if (star === 1) {
-                                                return (<StarHalfIcon fontSize="small" key={'key' + i2} />)
+                                                return (<StarHalfIcon className={dark ? 'text-light' : ''} fontSize="small" key={'key' + i2} />)
                                             } else {
-                                                return (<StarOutlineIcon fontSize="small" key={'key' + i2} />)
+                                                return (<StarOutlineIcon className={dark ? 'text-dark-secondary' : 'text-secondary'} fontSize="small" key={'key' + i2} />)
                                             }
                                         })}
                                     </Typography>
                                   </Grow>
                                     <br />
                                   <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 1300 : 0}>
-                                    <Typography variant="body1" component="p">
+                                    <Typography className={dark ? 'text-light' : ''} variant="body1" component="p">
                                         {item.desc}
                                     <br />
                                     </Typography>

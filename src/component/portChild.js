@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 
 import Grow from '@mui/material/Grow';
-const PortCom = ({item, classes, Lang}) => {
+const PortCom = ({item, classes, Lang, dark}) => {
     const [loaded, setLoaded] = React.useState(false)
     const handleImageLoad = () => {
         setLoaded(true);
@@ -17,7 +17,7 @@ const PortCom = ({item, classes, Lang}) => {
     return (
         <Grid item xs={12} sm={6}>
             <Paper>
-                    <Card>
+                    <Card sx={{backgroundColor: dark ? '#011345' : ''}}>
                         <CardActionArea>
                         <Grow in={loaded} timeout={localStorage.getItem('graphic') === null ? 1300 : 0}>
                             <img src={item.src} onLoad={handleImageLoad} alt={item.title} width="100%" />
@@ -29,18 +29,18 @@ const PortCom = ({item, classes, Lang}) => {
                             )}
                         <CardContent>
                             <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 1500 : 0}>
-                            <Typography gutterBottom variant="h5" component="h2">
+                            <Typography gutterBottom variant="h5" component="h2" className={dark ? 'text-light' : ''}>
                                 {item.title}
                             </Typography>
                             </Grow>
                             <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 1600 : 0}>
-                            <Typography variant="subtitle1" color="textSecondary" component="p">
+                            <Typography variant="subtitle1" color="textSecondary" component="p" className={dark ? 'text-dark-secondary' : ''}>
                                 {item.group}
                             </Typography>
                             </Grow>
                             <hr />
                             <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 1900 : 0}>
-                            <Typography variant="body1" component="p">
+                            <Typography variant="body1" component="p" className={dark ? 'text-light' : ''}>
                                 {item.desc}
                             </Typography>
                             </Grow>
@@ -49,7 +49,7 @@ const PortCom = ({item, classes, Lang}) => {
                         {item.link !== '' && (
                         <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 2100 : 0}>
                         <CardActions>
-                            <Button href={item.link} target="_blank" color="secondary" size="small">{Lang.see}</Button>
+                            <Button href={item.link} target="_blank" sx={{color: dark ? '#44ad67' : '#648cfa'}} size="small">{Lang.see}</Button>
                         </CardActions>
                         </Grow>
                         )}

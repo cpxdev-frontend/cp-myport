@@ -21,9 +21,9 @@ import {
   setLang, setDarkMode, setPage
 } from '../redux/action';
 //demo
-function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-  }
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 // const useStyles = makeStyles((theme) => ({
 //     root: {
 //       flexGrow: 1,
@@ -50,7 +50,35 @@ function Alert(props) {
 //       display: 'none',
 //     },
 //   }));
-const DirectForm = ({ setCol, open, Transition, ditlt, setOpen, endpoint}) => {
+
+const textinput = {style: {
+  color: 'white'
+}}
+
+const mainColor = {
+  "& label": {
+    color: "white"
+  },
+  "& label.Mui-focused": {
+    color: "#00c4f5"
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "white"
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "white"
+    },
+    "&:hover fieldset": {
+      borderColor: "#0072f5",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#00c4f5"
+    }
+  }
+}
+
+const DirectForm = ({ setCol, open, Transition, ditlt, dark, setOpen, endpoint}) => {
     //const classes = useStyles();
     const [state, setState] = React.useState({
       vertical: '',
@@ -177,7 +205,7 @@ const DirectForm = ({ setCol, open, Transition, ditlt, setOpen, endpoint}) => {
     });
     const color = "secondary";
     return (
-      <Dialog fullScreen open={open} onClose={CloseD} TransitionComponent={Transition}>
+      <Dialog fullScreen open={open} onClose={CloseD} TransitionComponent={Transition} className={dark ? 'darkfull' : ''}>
           <AppBar>
             <Toolbar>
               <IconButton
@@ -223,37 +251,36 @@ const DirectForm = ({ setCol, open, Transition, ditlt, setOpen, endpoint}) => {
             </Alert>
           </Snackbar>
             {load === true ? (
-            <Grow in={load} timeout={800}>
               <div className='text-center' style={{top: '45%', left: window.innerWidth > 900 ? '50%' : '45%', position: 'absolute'}}>
                   <img src="https://cdn.statically.io/gl/cpx2017/cpxcdnbucket@main/main/cpx-circular.svg" width="70px" alt="load" />
               </div>
-            </Grow>
             ):(
-              <div className='pl-3 pr-3'>
+              <div className='pl-3 pr-3' style={{paddingTop: '100px'}}>
                 <Grid container spacing={3}>
                   <Grid item xs={12} md={5}>
-                    <TextField id="name" color={color} fullWidth={true} label={Lang.name} />
+                    <TextField id="name" sx={dark ? mainColor : null} inputProps={dark ? textinput : null} fullWidth={true} label={Lang.name} />
                   </Grid>
                   <Grid item xs={12} md={7}>
-                    <TextField id="company" color={color} fullWidth={true} label={Lang.company} />
+                    <TextField id="company" sx={dark ? mainColor : null} inputProps={dark ? textinput : null}  fullWidth={true} label={Lang.company} />
                   </Grid>
                   <Grid item xs={12} md={7}>
-                    <TextField id="mail" color={color} placeholder="info@cpxdev.tk" fullWidth={true} label={Lang.email} />
+                    <TextField id="mail" sx={dark ? mainColor : null} inputProps={dark ? textinput : null} placeholder="info@cpxdev.tk" fullWidth={true} label={Lang.email} />
                   </Grid>
                   <Grid item xs={12} md={5}>
-                    <TextField id="tel" color={color} placeholder="+66812345678" type="tel" fullWidth={true} label={Lang.tel} />
+                    <TextField id="tel" sx={dark ? mainColor : null} inputProps={dark ? textinput : null} placeholder="+66812345678" type="tel" fullWidth={true} label={Lang.tel} />
                   </Grid>
                   <Grid item xs={10}>
-                    <TextField id="head" color={color} fullWidth={true} label={Lang.sub} />
+                    <TextField id="head" sx={dark ? mainColor : null} inputProps={dark ? textinput : null} fullWidth={true} label={Lang.sub} />
                   </Grid>
                   <Grid item xs={12}>
                       <TextField
                         id="desc"
-                        color={color}
+                        sx={dark ? mainColor : null}
                         fullWidth={true}
                         label={Lang.desc}
                         multiline
                         rows={3}
+                        inputProps={dark ? textinput : null} 
                       />
                   </Grid>
                   
@@ -272,7 +299,7 @@ const DirectForm = ({ setCol, open, Transition, ditlt, setOpen, endpoint}) => {
                   </Grid>
                   <Grid item md={6} xs={12}>
                   <Box mt={1}>
-                    <Typography varriant="subtitle1">{filename !== '' ? filename : 'Please click to upload'}</Typography>
+                    <Typography className={dark ? 'text-light' : ''} variant="subtitle1">{filename !== '' ? filename : 'Please click to upload'}</Typography>
                   </Box>
                   </Grid>
                   <img src="" alt="" id="img" width="500" title="Preview" hidden />
@@ -287,7 +314,8 @@ const DirectForm = ({ setCol, open, Transition, ditlt, setOpen, endpoint}) => {
 const mapStateToProps = (state) => ({
   dark: state.dark,
   CurrentLang: state.CurrentLang,
-  currentPage: state.currentPage
+  currentPage: state.currentPage,
+  endpoint: state.endpoint,
 });
 const mapDispatchToProps = (dispatch) => ({
   setDark: (val) => dispatch(setDarkMode(val)),

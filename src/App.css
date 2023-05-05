@@ -55,3 +55,15 @@
 .border-top{
   border-top-width: 2px !important;
 }
+
+.text-dark-secondary{
+  color: #bbbbbb !important;
+}
+
+a, a:hover{
+  color: #000;
+  text-decoration: none;
+}
+.darkfull > .MuiDialog-container > .MuiPaper-root{
+  background-color: #011345;
+}

@@ -39,7 +39,7 @@ import {
 let pm = new Audio();
 let time;
 
-const Hob = ({setPage, endpoint}) => {
+const Hob = ({setPage, endpoint, dark}) => {
   React.useEffect(() => {
     setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? th.title : en.title)
   }, [])
@@ -150,17 +150,17 @@ const Hob = ({setPage, endpoint}) => {
 
     const setPeek = (ind, artid) => {
       if (thumbart[ind].url == "") {
-        axios({
-          method: 'post',
-          url: endpoint.web + '/myport/spotart?pid=' + artid,
-        }).then(function (response) {
-          let temp = thumbart
-          temp[ind].url = response.data.res.images[0].url
-         setArtThumb(temp)
-      })
-      .catch(function () {
-          // handle error
-      });
+      //   axios({
+      //     method: 'post',
+      //     url: endpoint.web + '/myport/spotart?pid=' + artid,
+      //   }).then(function (response) {
+      //     let temp = thumbart
+      //     temp[ind].url = response.data.res.images[0].url
+      //    setArtThumb(temp)
+      // })
+      // .catch(function () {
+      //     // handle error
+      // });
       }
     }
 
@@ -174,48 +174,48 @@ const Hob = ({setPage, endpoint}) => {
       return (
         <div className='pl-3 pr-3'>
           <Slide direction="right" in={true} timeout={localStorage.getItem('graphic') === null ? 600 : 0}>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography gutterBottom variant="h5" component="h2" className={dark ? 'text-light' : ''}>
               {Lang.title}
             </Typography>
           </Slide>
-            <hr/>
-          <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+            <hr className={dark ? 'border-light' : ''} />
+          <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} sx={{backgroundColor: dark ? '#011345' : ''}}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
             <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 1400 : 0}>
-              <Typography variant="h6">{Lang.title1}</Typography>
+              <Typography variant="h6" className={dark ? 'text-light' : ''}>{Lang.title1}</Typography>
             </Grow>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="body2">
+              <Typography variant="body2" className={dark ? 'text-dark-secondary' : ''}>
                 {Lang.hoblist}
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+          <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')} sx={{backgroundColor: dark ? '#011345' : ''}}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel2a-content"
               id="panel2a-header"
             >
             <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 1400 : 0}>
-              <Typography variant="h6">{Lang.title2}</Typography>
+              <Typography variant="h6" className={dark ? 'text-light' : ''}>{Lang.title2}</Typography>
             </Grow>
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant="body2">
                 {Lang.favlist.map((fav, i) => i !== Lang.favlist.length - 1 ? (
-                  <g key={i} className="remove-ude point" onClick={() => {
+                  <g key={i} className={"remove-ude point" + (dark ? ' text-dark-secondary' : '')} onClick={() => {
                     setArr(fav);
                     setOpen(true);
                   }}>
                     {fav.title},&nbsp;
                   </g>
                 ) : (
-                  <g className="remove-ude point" onClick={() => {
+                  <g className={"remove-ude point" + (dark ? ' text-dark-secondary' : '')} onClick={() => {
                     setArr(fav);
                     setOpen(true);
                   }}>
@@ -225,14 +225,14 @@ const Hob = ({setPage, endpoint}) => {
               </Typography> 
             </AccordionDetails>
           </Accordion>
-          <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+          <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')} sx={{backgroundColor: dark ? '#011345' : ''}}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel3a-content"
               id="panel3a-header"
             >
             <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 1400 : 0}>
-              <Typography variant="h6">{Lang.title3}</Typography>
+              <Typography variant="h6" className={dark ? 'text-light' : ''}>{Lang.title3}</Typography>
             </Grow>
             </AccordionSummary>
             <AccordionDetails>
@@ -243,7 +243,7 @@ const Hob = ({setPage, endpoint}) => {
                     <Avatar src={item.track.album.images[0].url} variant={'rounded'} style={{width: 90 , height: 90}} /> 
                   </ListItemAvatar>
                   <div className='ml-3'>
-                  <ListItemText primary={item.track.name} secondary={(Lang.tag == 'th' ? 'ร้องโดย ' : 'Song by ') + (item.track.artists[0].name.length > 15 ? (item.track.artists[0].name).substring(0, 15) + '...' : item.track.artists[0].name)} />
+                  <ListItemText className={dark ? 'text-light' : ''} primary={item.track.name} secondary={(<p className={dark ? 'text-dark-secondary' : ''}>{(Lang.tag == 'th' ? 'ร้องโดย ' : 'Song by ') + (item.track.artists[0].name.length > 15 ? (item.track.artists[0].name).substring(0, 15) + '...' : item.track.artists[0].name)}</p>)} />
                   </div>
                 </ListItem>
               )) : (
@@ -267,12 +267,13 @@ const Hob = ({setPage, endpoint}) => {
               arr={arr}
               setOpen={(param) => setOpen(param)}
               Lang={Lang}
+              dark={dark}
             />
           </Dialog>
                     
           <Dialog
             TransitionComponent={Grow}
-            transitionDuration={localStorage.getItem('graphic') === null ? 900 : 0}
+            transitionDuration={localStorage.getItem('graphic') === null ? 700 : 0}
             open={songPreview}
             onClose={() => {
                 setPreview(false);
@@ -283,28 +284,28 @@ const Hob = ({setPage, endpoint}) => {
             aria-describedby="scroll-dialog-description"
           >
             {sam != null && (
-                <>
-               <DialogContent dividers>
+                <div style={{backgroundColor: dark ? '#011345' : ''}}>
+               <DialogContent>
                <div className='row'>
                 <div className='col-md-5'>
                   <img src={sam.track.album.images[0].url} width='100%' data-aos='fade-in' data-aos-duration="1600" />
                 </div>
                 <div className='col-md-7 pt-3'>
                  <CardActionArea onClick={() => window.open(sam.track.external_urls.spotify, '_blank')}>
-                        <Typography variant='h5'>
+                        <Typography variant='h5' className={dark ? 'text-light' : ''}>
                            {Lang.musicguide.title + sam.track.name}
                          </Typography>
                 </CardActionArea>
                   <CardActionArea onClick={() => window.open(sam.track.artists[0].external_urls.spotify, '_blank')}>
-                         <Typography variant='subtitle1' className='pointer' onMouseEnter={() => setArt(true)} onMouseLeave={() => setArt(false)}>
+                         <Typography variant='subtitle1' className={'pointer' + (dark ? ' text-dark-secondary' : ' text-secondary')} onMouseEnter={() => setArt(true)} onMouseLeave={() => setArt(false)}>
                             {Lang.musicguide.art + sam.track.artists[0].name} 
                          </Typography>
                     </CardActionArea>
-                 <hr/>
-                 <Typography variant='body1'>
+                 <hr className={dark ? 'border-light' : ''}/>
+                 <Typography variant='body1' className={dark ? 'text-light' : ''}>
                  {Lang.musicguide.album}"{sam.track.album.name}"
                  </Typography>
-                 <Typography variant='caption'>
+                 <Typography variant='caption' className={dark ? 'text-light' : ''}>
                  {/* {Lang.musicguide.released + ConvertDate(Lang.tag,sam.track.album.release_date)}  */}
                  {Lang.musicguide.released + (Lang.tag == 'th' ?  moment(sam.track.album.release_date, 'YYYY-MM-DD').format('DD MMMM') + ' ' + (new Date(sam.track.album.release_date).getFullYear() + 543) :  moment(sam.track.album.release_date, 'YYYY-MM-DD').format('DD MMMM YYYY'))} 
                  </Typography>
@@ -318,12 +319,13 @@ const Hob = ({setPage, endpoint}) => {
                 </div>
                 </div>
                  </DialogContent>
+                 <hr className={dark ? 'border-light' : ''}/>
                  <DialogActions>
-                    <Button onClick={() =>  setPreview(false)} color="info">
+                    <Button onClick={() =>  setPreview(false)} sx={{color: dark ? '#44ad67' : '#648cfa'}}>
                       {Lang.ok}
                     </Button>
                   </DialogActions>
-                </>
+                </div>
             )}
           </Dialog>
         </div>

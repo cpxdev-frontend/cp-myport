@@ -13,17 +13,17 @@ import {
   import Typography from '@mui/material/Typography';
   import Box from '@mui/material/Box';
 
-const FavCom = ({arr, setOpen, Lang}) => {
+const FavCom = ({arr, setOpen, Lang, dark}) => {
     const [loaded, setLoaded] = React.useState(false)
     const handleImageLoad = () => {
         setLoaded(true);
     }
     return ( 
-        <div>
+        <div style={{backgroundColor: dark ? '#011345' : ''}}>
             <Slide direction='left' in={true} timeout={localStorage.getItem('graphic') === null ? 900 : 0}>
               {arr.link !== undefined && arr.link !== '' ? (
                 <a href={arr.link} target="_blank" rel="noopener noreferrer">
-                  <DialogTitle id="scroll-dialog-title">
+                  <DialogTitle id="scroll-dialog-title" className={dark ? 'text-light' : ''}>
                     {arr.title}
                   </DialogTitle>
                 </a>
@@ -33,7 +33,7 @@ const FavCom = ({arr, setOpen, Lang}) => {
                 </DialogTitle>
               )}
               </Slide>
-            <DialogContent dividers>
+            <DialogContent dividers className={dark ? 'border-light' : ''}>
               <br />
               <Grid container spacing={4}>
             <Grid item xl md={5}>
@@ -70,7 +70,7 @@ const FavCom = ({arr, setOpen, Lang}) => {
             <Grid item sm md={7}>
             <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 800 : 0}>
                <Box mt={3}>
-                 <Typography>
+                 <Typography className={dark ? ' text-dark-secondary' : 'text-muted'}>
                    {arr.desc}
                  </Typography>
                </Box>
@@ -80,7 +80,7 @@ const FavCom = ({arr, setOpen, Lang}) => {
               
             </DialogContent>
             <DialogActions>
-              <Button onClick={() => setOpen(false)} color="info">
+              <Button onClick={() => setOpen(false)} sx={{color: dark ? '#44ad67' : '#648cfa'}}>
                 {Lang.ok}
               </Button>
             </DialogActions>

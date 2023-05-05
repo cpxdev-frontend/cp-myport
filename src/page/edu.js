@@ -48,7 +48,7 @@ import {
 //         height: theme.spacing(6),
 //       },
 //   }));
-const Edu = ({setPage}) => {
+const Edu = ({setPage, dark}) => {
   React.useEffect(() => {
     setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? th.title : en.title)
   }, [])
@@ -77,20 +77,20 @@ const Edu = ({setPage}) => {
     return (
       <div className='pl-3 pr-3'>
         <Slide direction="right" in={true} timeout={localStorage.getItem('graphic') === null ? 600 : 0}>
-          <Typography variant="h5">{Lang.title}</Typography>
+          <Typography variant="h5" className={dark ? 'text-light' : ''}>{Lang.title}</Typography>
         </Slide>
-        <hr />
+        <hr className={dark ? 'border-light' : ''} />
         <br/>
           <div>
            {Lang.list.map((item, i) => (
-            <Accordion key={i+1} expanded={expanded === item.panel} onChange={handleChange(item.panel)}>
+            <Accordion key={i+1} expanded={expanded === item.panel} onChange={handleChange(item.panel)} sx={{backgroundColor: dark ? '#011345' : ''}}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls={item.panel + 'bh-content'}
                 id={item.panel + 'bh-header'}
               >
               <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 1400 : 0}>
-                <Typography variant="h6">{item.title}</Typography>
+                <Typography variant="h6" className={dark ? 'text-light' : ''}>{item.title}</Typography>
               </Grow>
               </AccordionSummary>
               <AccordionDetails>
@@ -101,18 +101,20 @@ const Edu = ({setPage}) => {
                         <Avatar data-aos='fade-in' src={item.edulogo} />
                     </ListItemAvatar>
                     <ListItemText
-                    primary={item.locate}
+                    primary={<h6 className={dark ? 'text-light' : ''}>{item.locate}</h6>}
                     secondary={
                         <React.Fragment>
                         <Typography
                             component="span"
                             variant="body2"
-                            color="textPrimary"
+                            className={dark ? 'text-dark-secondary' : ''}
                         >
                             GPA: {item.gpa}
                             <br />
                         </Typography>
+                        <p className={dark ? 'text-light' : ''}>
                             {item.desc}
+                        </p>
                         </React.Fragment>
                     }
                     />

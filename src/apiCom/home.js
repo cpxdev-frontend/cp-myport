@@ -21,12 +21,12 @@ import {
 } from '../redux/action';
 
 
-const Home = ({Load, setLoadIco, col, setCol, endpoint}) => {
+const Home = ({Load, setLoadIco, col, setCol, endpoint, dark}) => {
   const [ Req, setReq] = React.useState(false);
   const [ stat, setstat] = React.useState(null);
   const mailpat = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
     const APITest = () => {
-      axios.get('https://api-qcw7.onrender.com/home/status')
+      axios.get(endpoint.api + '/home/status')
       .then(function () {
           setstat(true)
       }).catch(function () {
@@ -82,23 +82,23 @@ const Home = ({Load, setLoadIco, col, setCol, endpoint}) => {
 
     return ( 
       <div>
-         <Card>
+         <Card sx={{backgroundColor: dark ? '#011345' : ''}}>
           <CardActionArea>
             <CardContent>
-              <Typography gutterBottom variant="h4" component="h2">
+              <Typography gutterBottom variant="h4" component="h2"className={dark ? 'text-light' : ''}>
                   Welcome to MyPort API (A Part of CPX API Service)
               </Typography>
-              <hr />
+              <hr className={dark ? 'border-light' : ''} />
             </CardContent>
             <CardContent>
-              <Typography component="p" variant="body1">
+              <Typography component="p" variant="body1" className={dark ? 'text-dark-secondary' : 'text-secondary'}>
                   MyPort API is public API which access my profile for Job researching or learning for free. But for commercial usaged, you need to contact us because system resource is limited feature and maybe unstable.
               </Typography>
               <br />
-              <Typography component="p" variant="body1">
+              <Typography component="p" variant="body1" className={dark ? 'text-dark-secondary' : 'text-secondary'}>
                   First, click below button to get new Client ID and Secret Pass.
               </Typography>
-              <Typography component="p" variant="body1">
+              <Typography component="p" variant="body1"className={dark ? 'text-dark-secondary' : 'text-secondary'}>
                   Notes: Given CPX API Auth profile also can use with another API service under CPX API Service (CPX Covid19 and Unofficial BNK48 Members Public API etc.).
               </Typography>
               <br />
@@ -111,9 +111,9 @@ const Home = ({Load, setLoadIco, col, setCol, endpoint}) => {
                 </Button>
               </CardActions>
             </CardContent>
-            <Card>
+            <Card sx={{backgroundColor: dark ? '#011345' : ''}}>
             <CardContent>
-              <Typography className={stat === true ? 'green' : stat === false ? 'red' : ''} component="p" variant="body1">
+              <Typography className={stat === true ? 'text-success' : stat === false ? 'text-danger' : (dark ? 'text-light' : '')} component="p" variant="body1">
                   API Service Status: {stat === true ? 'Systems are great.' : stat === false ? 'Systems is temporary down or under maintenance.' : 'Checking API status'}
               </Typography>
             </CardContent>

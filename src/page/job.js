@@ -16,7 +16,7 @@ import {
   setLang, setDarkMode, setPage
 } from '../redux/action';
 
-const Job = ({setPage}) => {
+const Job = ({setPage, dark}) => {
   React.useEffect(() => {
     setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? th.title : en.title)
   }, [])
@@ -39,19 +39,21 @@ const Job = ({setPage}) => {
     return ( 
         <div className='pl-3 pr-3'>
           <Slide direction="right" in={true} timeout={localStorage.getItem('graphic') === null ? 600 : 0}>
-            <Typography variant="h5">{Lang.title}</Typography>
+            <Typography className={dark ? 'text-light' : ''} variant="h5">{Lang.title}</Typography>
           </Slide>
-            <hr/>
+            <hr className={dark ? 'border-light' : ''} />
           <Timeline>
           {Lang.list.map((item, i) => (
             <div data-aos='fade-right'>
             <TimelineEvent
               key={'job-' + i}
-              title={item.title}
-              subtitle={item.locate}
-              createdAt={(<Typography variant="subtitle1">{item.start + ' - ' + item.end}</Typography>)}
+              titleStyle={{color: dark ?'#fff':''}}
+              title={<h6>{item.title}</h6>}
+              subtitle={<p className={dark ? 'text-dark-secondary' : ''}>{item.locate}</p>}
+              createdAt={(<Typography variant="subtitle1" className={dark ? 'text-dark-secondary' : ''}>{item.start + ' - ' + item.end}</Typography>)}
               bubbleStyle={item.presentjob ? { background: "rgb(0, 224, 56)", color: '#fff' } :{ background: item.color, color: '#fff' }}
               icon={item.presentjob ? <StarsOutlinedIcon /> : <WorkOutlineIcon />}
+              contentStyle={{borderRadius: '6px', background: dark ?'#011345' : '', color: dark ? '#fff' : ''}}
             >
               <Typography variant="body1">{item.desc}</Typography>
             </TimelineEvent>

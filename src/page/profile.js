@@ -23,7 +23,7 @@ import { connect } from 'react-redux';
 //       height: theme.spacing(30),
 //     }
 //   }));
-const Profile = ({setPage}) => {
+const Profile = ({setPage, dark}) => {
   React.useEffect(() => {
     setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? th.title : en.title)
   }, [])
@@ -47,15 +47,15 @@ const Profile = ({setPage}) => {
     <div className='pl-3 pr-3'>
     <Slide direction="right" in={true} timeout={localStorage.getItem('graphic') === null ? 600 : 0}>
     <Grid item xs={12}>
-        <Typography gutterBottom variant="h5" component="h2">
+        <Typography gutterBottom variant="h5" component="h2" className={dark ? 'text-light' : ''}>
         {Lang.title}
         </Typography>
     </Grid>
     </Slide>
-    <hr />
+    <hr className={dark ? 'border-light' : ''} />
     <Card>
     <CardActionArea>
-      <CardContent>
+      <CardContent sx={{backgroundColor: dark ? '#011345' : ''}}>
         <Grid container spacing={3}>
         <Slide direction="right" in={true} timeout={localStorage.getItem('graphic') === null ? 500 : 0}>
             <Grid item sm md={3} className='d-flex justify-content-center align-items-center'>
@@ -67,25 +67,25 @@ const Profile = ({setPage}) => {
              <Grid item sm md={9}>
                <div className='row'>
                <ListItem className='col-md-5'>
-                 <ListItemText primary={Lang.desc[0].title} secondary={Lang.desc[0].desc} />
+                 <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[0].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[0].desc}</p>} />
                </ListItem>
                <ListItem className='col-md-5'>
-                  <ListItemText primary={Lang.desc[1].title} secondary={getAge(Lang.desc[1].desc)} />
+                  <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[1].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{getAge(Lang.desc[1].desc)}</p>} />
                </ListItem>
                <ListItem className='col-md-5'>
-                <ListItemText primary={Lang.desc[2].title} secondary={new Date(Lang.desc[2].desc).toDateString() + (localStorage.getItem('langconfig') === 'th' ? ' (' + (new Date(Lang.desc[2].desc).getFullYear() + 543) + ')' : '')} />
+                <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[2].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{new Date(Lang.desc[2].desc).toDateString() + (localStorage.getItem('langconfig') === 'th' ? ' (' + (new Date(Lang.desc[2].desc).getFullYear() + 543) + ')' : '')}</p>} />
                </ListItem>
                <ListItem className='col-md-5'>
-                <ListItemText primary={Lang.desc[3].title} secondary={Lang.desc[3].desc} />
+                <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[3].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[3].desc}</p>} />
                </ListItem>
                <ListItem className='col-md-5'>
-                 <ListItemText primary={Lang.desc[4].title} secondary={Lang.desc[4].desc} />
+                 <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[4].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[4].desc}</p>} />
                </ListItem>
                <ListItem className='col-md-5'>
-                 <ListItemText primary={Lang.desc[5].title} secondary={Lang.desc[5].desc} />
+                 <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[5].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[5].desc}</p>} />
                </ListItem>
                <ListItem className='col-md-5'>
-                 <ListItemText primary={Lang.desc[6].title} secondary={Lang.desc[6].desc} />
+                 <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[6].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[6].desc}</p>} />
                </ListItem>
                </div>
              </Grid>
@@ -95,25 +95,25 @@ const Profile = ({setPage}) => {
            <Grid item sm md={9}>
                <div className='row ml-1'>
                <ListItem className='col-md-5'>
-                 <ListItemText primary={Lang.desc[0].title} secondary={Lang.desc[0].desc} />
+                 <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[0].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[0].desc}</p>} />
                </ListItem>
                <ListItem className='col-md-5'>
-                 <ListItemText primary={Lang.desc[1].title} secondary={getAge(Lang.desc[1].desc)} />
+                  <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[1].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{getAge(Lang.desc[1].desc)}</p>} />
                </ListItem>
                <ListItem className='col-md-5'>
-                  <ListItemText primary={Lang.desc[2].title} secondary={new Date(Lang.desc[2].desc).toDateString() + (localStorage.getItem('langconfig') === 'th' ? ' (' + (new Date(Lang.desc[2].desc).getFullYear() + 543) + ')' : '')} />
+                <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[2].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{new Date(Lang.desc[2].desc).toDateString() + (localStorage.getItem('langconfig') === 'th' ? ' (' + (new Date(Lang.desc[2].desc).getFullYear() + 543) + ')' : '')}</p>} />
                </ListItem>
                <ListItem className='col-md-5'>
-                    <ListItemText primary={Lang.desc[3].title} secondary={Lang.desc[3].desc} />
+                <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[3].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[3].desc}</p>} />
                </ListItem>
                <ListItem className='col-md-5'>
-                 <ListItemText primary={Lang.desc[4].title} secondary={Lang.desc[4].desc} />
+                 <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[4].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[4].desc}</p>} />
                </ListItem>
                <ListItem className='col-md-5'>
-                 <ListItemText primary={Lang.desc[5].title} secondary={Lang.desc[5].desc} />
+                 <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[5].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[5].desc}</p>} />
                </ListItem>
                <ListItem className='col-md-5'>
-                 <ListItemText primary={Lang.desc[6].title} secondary={Lang.desc[6].desc} />
+                 <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[6].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[6].desc}</p>} />
                </ListItem>
                </div>
              </Grid>

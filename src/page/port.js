@@ -29,7 +29,7 @@ import { connect } from 'react-redux';
 //     },
 //   }));
 
-const Skill = ({setPage}) => {
+const Skill = ({setPage, dark}) => {
   React.useEffect(() => {
     setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? th.title : en.title)
   }, [])
@@ -52,12 +52,12 @@ const Skill = ({setPage}) => {
     return (
         <div className='pl-3 pr-3'>
           <Slide direction="right" in={true} timeout={localStorage.getItem('graphic') === null ? 600 : 0}>
-            <Typography variant="h5">{Lang.title}</Typography>
+            <Typography variant="h5" className={dark ? 'text-light' : ''}>{Lang.title}</Typography>
           </Slide>
-            <hr/>
+            <hr className={dark ? 'border-light' : ''}/>
             <Grid container spacing={3}>
                 {Lang.list.map((item, i) => (
-                    <Child key={i + 1} item={item} i={i} Lang={Lang} />
+                    <Child key={i + 1} item={item} i={i} Lang={Lang} dark={dark} />
                 ))}
             </Grid>
         </div>

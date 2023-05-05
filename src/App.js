@@ -60,6 +60,39 @@ import th from '../src/lang/th/menulist.json';
 
 const drawerWidth = 240;
 
+const textinput = {style: {
+  color: 'white'
+}}
+
+const mainColor = {
+  '& .MuiSvgIcon-root': {
+    color: 'white',
+ },
+  "& .MuiGrid-container": {
+    color: 'white',
+},
+  "& label": {
+    color: "white"
+  },
+  "& label.Mui-focused": {
+    color: "#00c4f5"
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "white"
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "white"
+    },
+    "&:hover fieldset": {
+      borderColor: "#0072f5",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#00c4f5"
+    }
+  }
+}
+
 const langlist = [
   {
     value: 'th',
@@ -125,9 +158,9 @@ const location = useLocation()
       localStorage.removeItem('dark');
     }
     if (dark) {
-      document.getElementById('root').style.backgroundColor = '#333333'
+      document.getElementsByTagName('body')[0].style.backgroundColor = '#333333'
     } else {
-      document.getElementById('root').style.backgroundColor = '#e8e8e8'
+      document.getElementsByTagName('body')[0].style.backgroundColor = '#e8e8e8'
     }
   }, [dark])
 
@@ -326,27 +359,27 @@ const location = useLocation()
           aria-describedby="alert-dialog-description"
           maxWidth="xl"
         >
-          <DialogContent>
+          <DialogContent style={{backgroundColor: dark ? '#011345' : ''}} >
             <DialogContentText id="alert-dialog-description">
-            <Typography variant="h5">
+            <Typography variant="h5" className={dark ? 'text-light' : ''}>
                 {Lang.about.head}
               </Typography>
-            <Divider />
-              <Typography>
+            <Divider className={dark ? 'border-light' : ''} />
+              <Typography className={dark ? 'text-light' : ''}>
                 {Lang.about.developName}
               </Typography>
             <br />
-              <Typography>
+              <Typography className={dark ? 'text-light' : ''}>
                 {Lang.about.desc}
               </Typography>
             <br />
-              <Typography>
+              <Typography className={dark ? 'text-light' : ''}>
                 {Lang.about.uptLog}
               </Typography>
             </DialogContentText>
           </DialogContent>
-          <DialogActions>
-            <Button onClick={() => setApiOpen(false)} color="secondary">
+          <DialogActions style={{backgroundColor: dark ? '#011345' : ''}} >
+            <Button onClick={() => setApiOpen(false)} sx={{color: dark ? '#44ad67' : '#648cfa'}}>
               {Lang.btnOK}
             </Button>
           </DialogActions>
@@ -360,14 +393,16 @@ const location = useLocation()
           aria-describedby="alert-dialog-description2"
           maxWidth="lg"
         >
-          <DialogTitle id="alert-dialog-title">{Lang.setting.title}</DialogTitle>
-          <DialogContent className='pt-3'>
+          <DialogTitle id="alert-dialog-title" style={{backgroundColor: dark ? '#011345' : ''}} className={dark ? 'text-light' : ''}>{Lang.setting.title}</DialogTitle>
+          <DialogContent className='pt-3' style={{backgroundColor: dark ? '#011345' : ''}}>
             <DialogContentText id="alert-dialog-description2">
               <TextField
             select
             label={Lang.setting.changeL}
+            sx={dark ? mainColor : null}
             onChange={(e) => setupLang(e.target.value)}
             value={CurrentLang}
+            inputProps={dark ? textinput : null} 
           >
             {langlist.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -392,6 +427,7 @@ const location = useLocation()
                   onChange={graphicFunc}
                 />
               }
+              className={dark ? 'text-light' : ''}
               label={Lang.reducemode.label + (graph ? Lang.reducemode.on : Lang.reducemode.off)}
             />
           </Tooltip>
@@ -404,12 +440,13 @@ const location = useLocation()
                   onChange={() => setDark(!dark)}
                 />
               }
+              className={dark ? 'text-light' : ''}
               label={Lang.setting.dark}
             />
             </DialogContentText>
           </DialogContent>
-          <DialogActions>
-            <Button onClick={() => setSetting(false)} color="secondary">
+          <DialogActions style={{backgroundColor: dark ? '#011345' : ''}}>
+            <Button onClick={() => setSetting(false)} sx={{color: dark ? '#44ad67' : '#648cfa'}}>
               {Lang.btnOK}
             </Button>
           </DialogActions>

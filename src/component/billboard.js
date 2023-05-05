@@ -17,13 +17,13 @@ const BillCom = ({item, dark, classes, i, slideInc}) => {
                     <img src="https://cdn.statically.io/gl/cpx2017/cpxcdnbucket@main/main/cpx-circular.svg" width="70px" alt="load" />
                 )}
                 <br />
-                <CardContent sx={{backgroundColor: dark ? '#7d7d7d' : ''}}>
+                <CardContent sx={{backgroundColor: dark ? '#011345' : ''}}>
                       <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 1000 : 0}>
-                        <Typography variant="h5">{item.title}</Typography>
+                        <Typography variant="h5" className={dark ? 'text-light' : ''}>{item.title}</Typography>
                       </Grow>
                         <br />
                       <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 1500 : 0}>
-                        <Typography variant="subtitle2">{item.desc}</Typography>
+                        <Typography variant="subtitle2" className={dark ? 'text-light' : ''}>{item.desc}</Typography>
                       </Grow>
                 </CardContent>
         </CardActionArea>
