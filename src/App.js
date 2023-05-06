@@ -99,12 +99,12 @@ const langlist = [
   {
     value: 'th',
     label: 'ภาษาไทย',
-    flag: 'https://disease.sh/assets/img/flags/th.png',
+    flag: 'https://pub-8132af7faa6a48298af6aaa68af91b48.r2.dev/th.png',
   },
   {
     value: 'en',
     label: 'English',
-    flag: 'https://disease.sh/assets/img/flags/us.png',
+    flag: 'https://pub-8132af7faa6a48298af6aaa68af91b48.r2.dev/us.png',
   },
 ];
 
