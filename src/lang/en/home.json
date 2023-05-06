@@ -1,4 +1,5 @@
 {
+    "lang": "en",
     "title": "Homepage",
     "load": "Loading, please wait",
     "slide": [
@@ -6,6 +7,28 @@
             "title": "Welcome to MyPort (Chinnathorn's MyPort)",
             "desc": "My objective of This website is my online portfolio. You maybe use this web site to inspirated your idea in education purpose. You can choose on the top-side menu or top left button to see all my profiles.",
             "src": "https://cdn.statically.io/gl/cpx2017/cpxcdnbucket@main/myport/Background.webp"
+        }
+    ],
+    "newfeature": [
+        {
+            "title": "New UI, New Generation",
+            "desc": "Redesign user interface. Modern and better performance for everyone."
+        },
+        {
+            "title": "Fully responsive",
+            "desc": "Support for all devices screen size. Display seamlessly"
+        },
+        {
+            "title": "Bilingual Language support",
+            "desc": "Support on display on both English and Thai language. And adjust content to suit each language used."
+        },
+        {
+            "title": "Dark mode is now!",
+            "desc": "Dark mode make easy and clean to view and user friendly."
+        },
+        {
+            "title": "All are agiles and powerful",
+            "desc": "We are trying to improve and develop this website to be more efficient and streamlined."
         }
     ]
 }

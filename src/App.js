@@ -205,7 +205,10 @@ const location = useLocation()
 
   const drawer = (
     <Box sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }} onClick={() => history.push('/')} className={'point' + (dark ? ' text-light' : '')}>
+      <Typography variant="h6" sx={{ my: 2 }} onClick={() => {
+              history.push('/')
+              handleDrawerToggle()
+        }} className={'point' + (dark ? ' text-light' : '')}>
         MyPort Site
       </Typography>
       <Divider className={dark ? 'border-light' : ''} />
@@ -308,7 +311,6 @@ const location = useLocation()
           </Box>
           <Typography
             sx={{ flexGrow: 1,  display: { sm: 'flex', md: 'none' } }}
-            onClick={() => history.push('/')}
           >
           </Typography>
           <Box sx={{ flexGrow: 0, display: { sm: 'flex', md:'none' } }}>
