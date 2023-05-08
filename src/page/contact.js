@@ -100,7 +100,7 @@ const Hob = ({col, setCol,setPage, dark}) => {
         <hr className={dark ? 'border-light' : ''} />
           <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} sx={{backgroundColor: dark ? '#011345' : ''}}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon className={dark ? 'text-light' : ''} />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
@@ -116,7 +116,7 @@ const Hob = ({col, setCol,setPage, dark}) => {
         </Accordion>
         <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')} sx={{backgroundColor: dark ? '#011345' : ''}}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon className={dark ? 'text-light' : ''} />}
             aria-controls="panel2a-content"
             id="panel2a-header"
           >
@@ -132,7 +132,7 @@ const Hob = ({col, setCol,setPage, dark}) => {
         </Accordion>
         <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')} sx={{backgroundColor: dark ? '#011345' : ''}}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon className={dark ? 'text-light' : ''} />}
             aria-controls="panel3a-content"
             id="panel3a-header"
           >

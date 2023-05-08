@@ -85,7 +85,7 @@ const Edu = ({setPage, dark}) => {
            {Lang.list.map((item, i) => (
             <Accordion key={i+1} expanded={expanded === item.panel} onChange={handleChange(item.panel)} sx={{backgroundColor: dark ? '#011345' : ''}}>
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon className={dark ? 'text-light' : ''} />}
                 aria-controls={item.panel + 'bh-content'}
                 id={item.panel + 'bh-header'}
               >

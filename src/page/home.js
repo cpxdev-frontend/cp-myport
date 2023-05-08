@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
 //     },
 //   }));
 
-const Home = ({setPage, dark}) => {
+const Home = ({setPage, dark, CurrentLang}) => {
   React.useEffect(() => {
     setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? 'หน้าหลัก' : 'Homepage')
   }, [])
@@ -53,7 +53,7 @@ const Home = ({setPage, dark}) => {
          }
     </div>
     <div className='container mt-5'>
-      <CardHeader className={dark ? 'text-light' : ''} title={Lang.lang == 'th' ? 'ฟีเจอร์ใน MyPort Site' : 'Feature of MyPort Site'} />
+      <CardHeader className={dark ? 'text-light' : ''} title={CurrentLang == 'th' ? 'ฟีเจอร์ใน MyPort Site' : 'Feature of MyPort Site'} />
       <hr className={dark ? 'border-light' : ''} />
       {
              Lang.newfeature.map((item, i) => (
