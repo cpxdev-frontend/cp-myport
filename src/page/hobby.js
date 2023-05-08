@@ -39,12 +39,12 @@ import {
 let pm = new Audio();
 let time;
 
-const Hob = ({setPage, endpoint, dark}) => {
+const Hob = ({setPage, endpoint, dark, CurrentLang}) => {
   React.useEffect(() => {
     setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? th.title : en.title)
   }, [])
     const [thumbart, setArtThumb] = React.useState([]);
-    const [Lang, setLang] = useState(null);
+    const [Lang, setLang] = useState(CurrentLang == 'th' ? th : en);
     const [isOpen, setOpen] = React.useState(false);
      const [songPreview, setPreview] = React.useState(false);
      const [peekArt, setArt] = React.useState(false);
@@ -170,7 +170,6 @@ const Hob = ({setPage, endpoint, dark}) => {
      setPreview(true);
     }
 
-    if (Lang != null) {
       return (
         <div className='pl-3 pr-3'>
           <Slide direction="right" in={true} timeout={localStorage.getItem('graphic') === null ? 600 : 0}>
@@ -330,8 +329,6 @@ const Hob = ({setPage, endpoint, dark}) => {
           </Dialog>
         </div>
      );
-    }
-   return null
 }
  
 const mapStateToProps = (state) => ({
