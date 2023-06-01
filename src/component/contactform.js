@@ -133,7 +133,7 @@ const DirectForm = ({ setCol, open, Transition, ditlt, dark, setOpen, endpoint})
               if (load == true) {
                 setLongidle(true)
               }
-            }, 8000);
+            }, 5000);
             axios({
               method: 'post',
               url: url,
