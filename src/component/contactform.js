@@ -133,7 +133,7 @@ const DirectForm = ({ setCol, open, Transition, ditlt, dark, setOpen, endpoint})
               if (load == true) {
                 setLongidle(true)
               }
-            }, 5000);
+            }, 8000);
             axios({
               method: 'post',
               url: url,
@@ -231,7 +231,7 @@ const DirectForm = ({ setCol, open, Transition, ditlt, dark, setOpen, endpoint})
             </Toolbar>
           </AppBar>
           <div>
-          <Snackbar anchorOrigin={{ vertical, horizontal }} open={successalt} autoHideDuration={3500} onClose={() => setLongidle(false)}>
+          <Snackbar anchorOrigin={{ vertical, horizontal }} open={toolongUpload} autoHideDuration={3500} onClose={() => setLongidle(false)}>
             <Alert onClose={() => setLongidle(false)} severity={Lang.long.icon}>
                 {Lang.long.desc}
             </Alert>
