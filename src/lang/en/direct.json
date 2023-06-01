@@ -8,6 +8,11 @@
     "up": "Upload attached file",
     "btn": "Send",
     "close": "Close",
+    "long": {
+        "title": "Sending messages maybe take a long time.",
+        "desc": "Due to the large size of the attachment or the system being accessed by a large number of people. Please wait a moment",
+        "icon": "info"
+    },
     "success": {
         "title": "Message has been sent",
         "desc": "Message has been sent to me. Please wait to reply soon. Thank you.",

@@ -91,6 +91,7 @@ const DirectForm = ({ setCol, open, Transition, ditlt, dark, setOpen, endpoint})
     const [failalt, setfail] = React.useState(false);
     const [warnalt, setwarn] = React.useState(false);
     const [upwarnalt, setUpwarn] = React.useState(false);
+    const [toolongUpload, setLongidle] = React.useState(false);
     const [filename, setFile] = React.useState('');
 
     const [Lang, setLang] = React.useState(th);
@@ -128,6 +129,11 @@ const DirectForm = ({ setCol, open, Transition, ditlt, dark, setOpen, endpoint})
             }
 
             setCol(true)
+            setTimeout(() => {
+              if (load == true) {
+                setLongidle(true)
+              }
+            }, 8000);
             axios({
               method: 'post',
               url: url,
@@ -225,6 +231,11 @@ const DirectForm = ({ setCol, open, Transition, ditlt, dark, setOpen, endpoint})
             </Toolbar>
           </AppBar>
           <div>
+          <Snackbar anchorOrigin={{ vertical, horizontal }} open={successalt} autoHideDuration={3500} onClose={() => setLongidle(false)}>
+            <Alert onClose={() => setLongidle(false)} severity={Lang.long.icon}>
+                {Lang.long.desc}
+            </Alert>
+        </Snackbar>
         <Snackbar anchorOrigin={{ vertical, horizontal }} open={successalt} autoHideDuration={3500} onClose={onSuccess}>
             <Alert onClose={onSuccess} severity={Lang.success.icon}>
                 {Lang.success.desc}
