@@ -3,7 +3,7 @@ const initialState = {
     dark: localStorage.getItem('dark') != null ? true : false,
     currentPage: 'Loading',
     endpoint: {
-      web: 'https://cpxdevapi.azurewebsites.net',
+      web: 'https://cpxdevapi' + (Math.floor(Math.random() * 2) + 1).toString() +'.azurewebsites.net',
       api: 'https://api-qcw7.onrender.com'
     }
   };
