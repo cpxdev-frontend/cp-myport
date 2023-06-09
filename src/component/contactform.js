@@ -269,29 +269,29 @@ const DirectForm = ({ setCol, open, Transition, ditlt, dark, setOpen, endpoint})
               <div className='pl-3 pr-3' style={{paddingTop: '100px'}}>
                 <Grid container spacing={3}>
                   <Grid item xs={12} md={5}>
-                    <TextField id="name" sx={dark ? mainColor : null} inputProps={dark ? textinput : null} fullWidth={true} label={Lang.name} />
+                    <TextField id="name" sx={dark ? mainColor : undefined} inputProps={dark ? textinput : undefined} fullWidth={true} label={Lang.name} />
                   </Grid>
                   <Grid item xs={12} md={7}>
-                    <TextField id="company" sx={dark ? mainColor : null} inputProps={dark ? textinput : null}  fullWidth={true} label={Lang.company} />
+                    <TextField id="company" sx={dark ? mainColor : undefined} inputProps={dark ? textinput : undefined}  fullWidth={true} label={Lang.company} />
                   </Grid>
                   <Grid item xs={12} md={7}>
-                    <TextField id="mail" sx={dark ? mainColor : null} inputProps={dark ? textinput : null} placeholder="info@cpxdev.tk" fullWidth={true} label={Lang.email} />
+                    <TextField id="mail" sx={dark ? mainColor : undefined} inputProps={dark ? textinput : undefined} placeholder="info@cpxdev.tk" fullWidth={true} label={Lang.email} />
                   </Grid>
                   <Grid item xs={12} md={5}>
-                    <TextField id="tel" sx={dark ? mainColor : null} inputProps={dark ? textinput : null} placeholder="+66812345678" type="tel" fullWidth={true} label={Lang.tel} />
+                    <TextField id="tel" sx={dark ? mainColor : undefined} inputProps={dark ? textinput : undefined} placeholder="+66812345678" type="tel" fullWidth={true} label={Lang.tel} />
                   </Grid>
                   <Grid item xs={10}>
-                    <TextField id="head" sx={dark ? mainColor : null} inputProps={dark ? textinput : null} fullWidth={true} label={Lang.sub} />
+                    <TextField id="head" sx={dark ? mainColor : undefined} inputProps={dark ? textinput : undefined} fullWidth={true} label={Lang.sub} />
                   </Grid>
                   <Grid item xs={12}>
                       <TextField
                         id="desc"
-                        sx={dark ? mainColor : null}
+                        sx={dark ? mainColor : undefined}
                         fullWidth={true}
                         label={Lang.desc}
                         multiline
                         rows={3}
-                        inputProps={dark ? textinput : null} 
+                        inputProps={dark ? textinput : undefined} 
                       />
                   </Grid>
                   
