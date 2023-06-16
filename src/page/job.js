@@ -16,25 +16,20 @@ import {
   setLang, setDarkMode, setPage
 } from '../redux/action';
 
-const Job = ({setPage, dark}) => {
+const Job = ({setPage, dark, CurrentLang}) => {
   React.useEffect(() => {
-    setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? th.title : en.title)
+    setPage(CurrentLang == 'th' ? th.title : en.title)
   }, [])
     const [Lang, setLang] = useState(th);
 
-    const syncpage = () => {
-      if (localStorage.getItem('langconfig') !== null) {
-        if (localStorage.getItem('langconfig') === 'th') {
-          setLang(th);
-        } else {
-          setLang(en);
-        }
-      }
-    };
-    
     React.useEffect(() => {
-      syncpage();
-    });
+      if (CurrentLang === 'th') {
+        setLang(th);
+      } else {
+        setLang(en);
+      }
+    }, [CurrentLang]);
+
 
     return ( 
         <div className='pl-3 pr-3'>

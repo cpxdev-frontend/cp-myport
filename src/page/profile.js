@@ -23,25 +23,21 @@ import { connect } from 'react-redux';
 //       height: theme.spacing(30),
 //     }
 //   }));
-const Profile = ({setPage, dark}) => {
+const Profile = ({setPage, dark, CurrentLang}) => {
   React.useEffect(() => {
-    setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? th.title : en.title)
+    setPage(CurrentLang == 'th' ? th.title : en.title)
   }, [])
     const [Lang, setLang] = useState(th);
     //const classes = useStyles();
 
-    const syncpage = () => {
-      if (localStorage.getItem('langconfig') !== null) {
-        if (localStorage.getItem('langconfig') === 'th') {
-          setLang(th);
-        } else {
-          setLang(en);
-        }
-      }
-    };
     React.useEffect(() => {
-      syncpage();
-    });
+      if (CurrentLang === 'th') {
+        setLang(th);
+      } else {
+        setLang(en);
+      }
+    }, [CurrentLang]);
+
 
   return ( 
     <div className='pl-3 pr-3'>

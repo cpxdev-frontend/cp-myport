@@ -82,28 +82,22 @@ let time;
 //         fontWeight: theme.typography.fontWeightRegular,
 //       }
 //   }));
-const Doc = ({setPage, endpoint, dark}) => {
+const Doc = ({setPage, endpoint, dark, CurrentLang}) => {
   React.useEffect(() => {
-    setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? th.title : en.title)
+    setPage(CurrentLang == 'th' ? th.title : en.title)
   }, [])
     const [Lang, setLang] = useState(th);
     const [arr, setArr] = React.useState(null);
     
-    const syncpage = () => {
-      if (localStorage.getItem('langconfig') !== null) {
-        if (localStorage.getItem('langconfig') == 'th') {
-          setLang(th);
-          moment.locale('th')
-        } else {
-          setLang(en);
-          moment.locale('en')
-        }
-      }
-    };
+   
     //const classes = useStyles();
     React.useEffect(() => {
-      syncpage();
-    });
+      if (CurrentLang === 'th') {
+        setLang(th);
+      } else {
+        setLang(en);
+      }
+    }, [CurrentLang]);
 
 
     React.useEffect(() => {

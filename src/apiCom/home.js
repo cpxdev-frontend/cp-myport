@@ -103,10 +103,10 @@ const Home = ({Load, setLoadIco, col, setCol, endpoint, dark}) => {
               </Typography>
               <br />
               <CardActions>
-                <Button color="secondary" href="https://apicenter.cpxdev.tk/myport" variant="text" target="_blank">
+                <Button color="secondary" className={dark ? 'hover' : ''} href="https://cp-apicenter.pages.dev/myport" variant="text" target="_blank">
                   Get CPX API Auth profile (ClientID and Secretpass)
                 </Button>
-                <Button color="secondary" href="https://documenter.getpostman.com/view/13721881/Tzz7Py3t" variant="text" target="_blank">
+                <Button color="secondary" className={dark ? 'hover' : ''} href="https://documenter.getpostman.com/view/13721881/Tzz7Py3t" variant="text" target="_blank">
                   See API Documentation here
                 </Button>
               </CardActions>

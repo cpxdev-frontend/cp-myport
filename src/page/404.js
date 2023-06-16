@@ -13,9 +13,9 @@ import {
 import { connect } from 'react-redux';
 
 
-const ErrorPage = ({setPage}) => {
+const ErrorPage = ({setPage, CurrentLang}) => {
   React.useEffect(() => {
-    setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? 'ไม่พบเพจ' : 'Page not found')
+    setPage(CurrentLang == 'th' ? 'ไม่พบเพจ' : 'Page not found')
   }, [])
 
     return ( 

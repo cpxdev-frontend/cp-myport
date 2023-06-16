@@ -51,9 +51,9 @@ function TabPanel(props) {
   //   },
   // }));
   
-  const ApiDoc = ({col, setCol,setPage}) => {
+  const ApiDoc = ({col, setCol,setPage, CurrentLang}) => {
     React.useEffect(() => {
-      setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? 'บริการ API' : 'API Service')
+      setPage(CurrentLang == 'th' ? 'บริการ API' : 'API Service')
     }, [])
     const Refreshdetect = (e) => {
       if (col.api === true) {

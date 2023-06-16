@@ -78,7 +78,7 @@ const mainColor = {
   }
 }
 
-const DirectForm = ({ setCol, open, Transition, ditlt, dark, setOpen, endpoint}) => {
+const DirectForm = ({ setCol, open, Transition, ditlt, dark, setOpen, endpoint, CurrentLang}) => {
     //const classes = useStyles();
     const [state, setState] = React.useState({
       vertical: '',
@@ -95,15 +95,7 @@ const DirectForm = ({ setCol, open, Transition, ditlt, dark, setOpen, endpoint})
     const [filename, setFile] = React.useState('');
 
     const [Lang, setLang] = React.useState(th);
-    const syncpage = () => {
-      if (localStorage.getItem('langconfig') !== null) {
-        if (localStorage.getItem('langconfig') === 'th') {
-          setLang(th);
-        } else {
-          setLang(en);
-        }
-      }
-    };
+    
 
     const getinput = (id) => {
         return document.getElementById(id).value;
@@ -207,8 +199,12 @@ const DirectForm = ({ setCol, open, Transition, ditlt, dark, setOpen, endpoint})
     }
 
     React.useEffect(() => {
-      syncpage();
-    });
+      if (CurrentLang === 'th') {
+        setLang(th);
+      } else {
+        setLang(en);
+      }
+    }, [CurrentLang]);
     const color = "secondary";
     return (
       <Dialog fullScreen open={open} onClose={CloseD} TransitionComponent={Transition} className={dark ? 'darkfull' : ''}>

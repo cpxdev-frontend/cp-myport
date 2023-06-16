@@ -30,9 +30,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 //       }
 //   }));
 const icondark = 'invert(67%) sepia(39%) saturate(0%) hue-rotate(229deg) brightness(95%) contrast(102%)'
-const Hob = ({col, setCol,setPage, dark}) => {
+const Hob = ({col, setCol,setPage, dark, CurrentLang}) => {
   React.useEffect(() => {
-    setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? th.title : en.title)
+    setPage(CurrentLang == 'th' ? th.title : en.title)
   }, [])
   const Refreshdetect = (e) => {
     if (col.contact === true) {
@@ -54,15 +54,7 @@ const Hob = ({col, setCol,setPage, dark}) => {
       const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
       };
-    const syncpage = () => {
-      if (localStorage.getItem('langconfig') !== null) {
-        if (localStorage.getItem('langconfig') === 'th') {
-          setLang(th);
-        } else {
-          setLang(en);
-        }
-      }
-    };
+   
     //const classes = useStyles();
     const [open, setOpen] = React.useState(false);
 
@@ -88,8 +80,12 @@ const Hob = ({col, setCol,setPage, dark}) => {
       }
      }, 100);
     React.useEffect(() => {
-      syncpage();
-    });
+      if (CurrentLang === 'th') {
+        setLang(th);
+      } else {
+        setLang(en);
+      }
+    }, [CurrentLang]);
     return (
       <div className='pl-3 pr-3'>
         <Slide direction="right" in={true} timeout={localStorage.getItem('graphic') === null ? 600 : 0}>

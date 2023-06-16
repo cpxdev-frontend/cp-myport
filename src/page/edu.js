@@ -48,9 +48,9 @@ import {
 //         height: theme.spacing(6),
 //       },
 //   }));
-const Edu = ({setPage, dark}) => {
+const Edu = ({setPage, dark, CurrentLang}) => {
   React.useEffect(() => {
-    setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? th.title : en.title)
+    setPage(CurrentLang == 'th' ? th.title : en.title)
   }, [])
     //const classes = useStyles();
     const [expanded, setExpanded] = React.useState('panel1');
@@ -59,20 +59,14 @@ const Edu = ({setPage, dark}) => {
     const handleChange = (panel) => (event, isExpanded) => {
       setExpanded(isExpanded ? panel : false);
     };
-
-    const syncpage = () => {
-      if (localStorage.getItem('langconfig') !== null) {
-        if (localStorage.getItem('langconfig') === 'th') {
-          setLang(th);
-        } else {
-          setLang(en);
-        }
-      }
-    };
     
     React.useEffect(() => {
-      syncpage();
-    });
+      if (CurrentLang === 'th') {
+        setLang(th);
+      } else {
+        setLang(en);
+      }
+    }, [CurrentLang]);
   
     return (
       <div className='pl-3 pr-3'>

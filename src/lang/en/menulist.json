@@ -2,8 +2,8 @@
    "lang": "EN",
    "reduce": "Best performance",
    "reducemode": {
-      "on": "Focus on Efficiency",
-      "off": "Focus on Modern",
+      "on": "Efficiency",
+      "off": "Optimize",
       "label": "Graphic Mode: "
    },
    "menu": [
@@ -78,7 +78,7 @@
         "changeL": "Select language",
         "cReg": "Current Region",
         "title": "Settings",
-        "dark": "Dark Mode (Beta now)"
+        "dark": "Dark Mode"
     },
     "settingGuide": {
         "perfor": "Enable this feature will be reduce motion graphic and transition and better performance",

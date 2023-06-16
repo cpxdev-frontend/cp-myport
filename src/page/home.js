@@ -20,7 +20,7 @@ import { connect } from 'react-redux';
 
 const Home = ({setPage, dark, CurrentLang}) => {
   React.useEffect(() => {
-    setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? 'หน้าหลัก' : 'Homepage')
+    setPage(CurrentLang == 'th' ? 'หน้าหลัก' : 'Homepage')
   }, [])
 
     //const classes = useStyles();
@@ -28,18 +28,16 @@ const Home = ({setPage, dark, CurrentLang}) => {
     
     const [Ready, setReady] = useState(false);
     
-    const syncpage = () => {
-      if (localStorage.getItem('langconfig') !== null) {
-        if (localStorage.getItem('langconfig') === 'th') {
-          setLang(th);
-        } else {
-          setLang(en);
-        }
+    React.useEffect(() => {
+      if (CurrentLang === 'th') {
+        setLang(th);
+      } else {
+        setLang(en);
       }
-    };
+    }, [CurrentLang]);
+
 
     React.useEffect(() => {
-      syncpage();
       setReady(true)
     });
     return ( 

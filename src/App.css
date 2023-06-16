@@ -67,3 +67,6 @@ a, a:hover{
 .darkfull > .MuiDialog-container > .MuiPaper-root{
   background-color: #011345;
 }
+.hover:hover{
+  color: #fff;
+}

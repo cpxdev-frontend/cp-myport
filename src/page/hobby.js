@@ -41,7 +41,7 @@ let time;
 
 const Hob = ({setPage, endpoint, dark, CurrentLang}) => {
   React.useEffect(() => {
-    setPage(localStorage.getItem('langconfig') !== null && localStorage.getItem('langconfig') == 'th' ? th.title : en.title)
+    setPage(CurrentLang == 'th' ? th.title : en.title)
   }, [])
     const [thumbart, setArtThumb] = React.useState([]);
     const [Lang, setLang] = useState(CurrentLang == 'th' ? th : en);
@@ -61,26 +61,19 @@ const Hob = ({setPage, endpoint, dark, CurrentLang}) => {
       const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
       };
-    const syncpage = () => {
-      if (localStorage.getItem('langconfig') !== null) {
-        if (localStorage.getItem('langconfig') == 'th') {
+    
+      React.useEffect(() => {
+        if (CurrentLang === 'th') {
           setLang(th);
-          moment.locale('th')
         } else {
           setLang(en);
-          moment.locale('en')
         }
-      }
-    };
-    //const classes = useStyles();
-    React.useEffect(() => {
-      syncpage();
-    });
+      }, [CurrentLang]);
 
 
     React.useEffect(() => {
       if (localStorage.getItem('langconfig') !== null) {
-        if (localStorage.getItem('langconfig') === 'th') {
+        if (CurrentLang == 'th') {
             axios({
               method: 'post',
               url: endpoint.web + '/myport/spotsync?pid=' + th.playlist,
