@@ -45,7 +45,6 @@ import {
 } from './redux/action';
 
 import Home from './page/home';
-import Profile from './page/profile';
 import Education from './page/edu';
 import Job from './page/job';
 import Skill from './page/skill';
@@ -358,7 +357,6 @@ const location = useLocation()
         <Toolbar />
         <BasicSwitch>
                 <Route exact path="/" render={() => <Home />} />
-                <Route path="/profile" render={() => <Profile />} />
                 <Route path="/education" render={() => <Education />} />
                 <Route path="/job" render={() => <Job />} />
                 <Route path="/skill" render={() => <Skill />} />

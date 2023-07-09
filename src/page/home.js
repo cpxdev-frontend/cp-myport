@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+import { Card, CardActionArea, CardContent, Typography, Grid, Slide, ListItem, ListItemText } from '@mui/material';
 import { makeStyles } from '@mui/material/styles';
-import { Grid, Typography, CardContent, Card, CardActionArea, Slide, Grow, Backdrop, CardHeader } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import Grow from '@mui/material/Grow';
+import getAge from 'get-age';
+import moment from 'moment';
+
 import en from '../lang/en/home.json';
 import th from '../lang/th/home.json';
-import BillCom from '../component/billboard';
 
 import {
   setLang, setDarkMode, setPage
@@ -11,23 +15,22 @@ import {
 import { connect } from 'react-redux';
 
 // const useStyles = makeStyles((theme) => ({
-//     loader: {
-//       padding: theme.spacing(2),
-//       textAlign: 'center',
-//       backgroundColor: '#fff'
-//     },
+//     root: {
+//         textAlign: 'center',
+//         display: 'block'
+//       },
+//     large: {
+//       width: theme.spacing(30),
+//       height: theme.spacing(30),
+//     }
 //   }));
-
 const Home = ({setPage, dark, CurrentLang}) => {
   React.useEffect(() => {
-    setPage(CurrentLang == 'th' ? 'หน้าหลัก' : 'Homepage')
+    setPage(CurrentLang == 'th' ? th.title : en.title)
   }, [])
-
-    //const classes = useStyles();
     const [Lang, setLang] = useState(th);
-    
-    const [Ready, setReady] = useState(false);
-    
+    //const classes = useStyles();
+
     React.useEffect(() => {
       if (CurrentLang === 'th') {
         setLang(th);
@@ -37,36 +40,89 @@ const Home = ({setPage, dark, CurrentLang}) => {
     }, [CurrentLang]);
 
 
-    React.useEffect(() => {
-      setReady(true)
-    });
-    return ( 
-    <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 600 : 0}>
-    <div>
-    <div className='container'>
-     {
-             Lang.slide.map((item, i) => (
-                <BillCom key={i} dark={dark} item={item} i={i} />
-             ))
-         }
-    </div>
-    <div className='container mt-5'>
-      <CardHeader className={dark ? 'text-light' : ''} title={CurrentLang == 'th' ? 'ฟีเจอร์ใน MyPort Site' : 'Feature of MyPort Site'} />
-      <hr className={dark ? 'border-light' : ''} />
-      {
-             Lang.newfeature.map((item, i) => (
-                <Card className='mb-3' key={i} data-aos='fade-right'>
-                  <CardContent sx={{backgroundColor: dark ? '#011345' : ''}}>
-                    <CardHeader className={dark ? 'text-light' : ''} title={item.title} />
-                    <Typography className={'ml-3' + (dark ? ' text-dark-secondary' : 'text-muted')} variant="body2">{item.desc}</Typography>
-                  </CardContent>
-                </Card>
-             ))
-         }
-    </div>
-    </div>
-    </Grow>
-     );
+  return ( 
+    <div className='pl-3 pr-3'>
+    <Slide direction="right" in={true} timeout={localStorage.getItem('graphic') === null ? 600 : 0}>
+    <Grid item xs={12}>
+        <Typography gutterBottom variant="h5" component="h2" className={dark ? 'text-light' : ''}>
+        {Lang.title}
+        </Typography>
+    </Grid>
+    </Slide>
+    <hr className={dark ? 'border-light' : ''} />
+    <Card>
+    <CardActionArea>
+      <CardContent sx={{backgroundColor: dark ? '#011345' : ''}}>
+        <Grid container spacing={3}>
+        <Slide direction="right" in={true} timeout={localStorage.getItem('graphic') === null ? 500 : 0}>
+            <Grid item sm md={3} className='d-flex justify-content-center align-items-center'>
+                <Avatar sx={{width: '100%', height: '100%'}} alt="" src="https://ik.imagekit.io/cpxstorage/myport/prof" />
+            </Grid>
+        </Slide>
+           {window.innerWidth > 600 ? (
+             <Slide direction="left" in={true} timeout={localStorage.getItem('graphic') === null ? 800 : 0}>
+             <Grid item sm md={9}>
+               <div className='row'>
+               <ListItem className='col-md-5'>
+                 <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[0].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[0].desc}</p>} />
+               </ListItem>
+               <ListItem className='col-md-5'>
+                  <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[1].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{getAge(Lang.desc[1].desc)}</p>} />
+               </ListItem>
+               <ListItem className='col-md-5'>
+                <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[2].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{moment(Lang.desc[2].desc, 'YYYY-MM-DD').lang(CurrentLang).format('DD MMMM YYYY') + (localStorage.getItem('langconfig') === 'th' ? ' (พ.ศ. ' + (new Date(Lang.desc[2].desc).getFullYear() + 543) + ')' : '')}</p>} />
+               </ListItem>
+               <ListItem className='col-md-5'>
+                <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[3].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[3].desc}</p>} />
+               </ListItem>
+               <ListItem className='col-md-5'>
+                 <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[4].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[4].desc}</p>} />
+               </ListItem>
+               <ListItem className='col-md-5'>
+                 <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[5].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[5].desc}</p>} />
+               </ListItem>
+               <ListItem className='col-md-5'>
+                 <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[6].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[6].desc}</p>} />
+               </ListItem>
+               </div>
+             </Grid>
+         </Slide>
+           ) : (
+            <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 1500 : 0}>
+           <Grid item sm md={9}>
+               <div className='row ml-1'>
+               <ListItem className='col-md-5'>
+                 <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[0].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[0].desc}</p>} />
+               </ListItem>
+               <ListItem className='col-md-5'>
+                  <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[1].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{getAge(Lang.desc[1].desc)}</p>} />
+               </ListItem>
+               <ListItem className='col-md-5'>
+                <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[2].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{moment(Lang.desc[2].desc, 'YYYY-MM-DD').lang(CurrentLang).format('DD MMMM YYYY') + (localStorage.getItem('langconfig') === 'th' ? ' (พ.ศ. ' + (new Date(Lang.desc[2].desc).getFullYear() + 543) + ')' : '')}</p>} />
+               </ListItem>
+               <ListItem className='col-md-5'>
+                <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[3].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[3].desc}</p>} />
+               </ListItem>
+               <ListItem className='col-md-5'>
+                 <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[4].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[4].desc}</p>} />
+               </ListItem>
+               <ListItem className='col-md-5'>
+                 <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[5].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[5].desc}</p>} />
+               </ListItem>
+               <ListItem className='col-md-5'>
+                 <ListItemText className={dark ? 'text-light' : ''} primary={Lang.desc[6].title} secondary={<p className={dark ? 'text-dark-secondary' : ''}>{Lang.desc[6].desc}</p>} />
+               </ListItem>
+               </div>
+             </Grid>
+        </Grow>
+           )}
+        </Grid>
+        <br />
+      </CardContent>
+    </CardActionArea>
+  </Card>
+  </div>
+  );
 }
  
 const mapStateToProps = (state) => ({

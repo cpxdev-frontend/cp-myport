@@ -8,12 +8,13 @@
    },
    "menu": [
         {
+            "path": "/",
+            "name": "Home",
+            "list": null
+        },
+        {
             "name": "My Personal",
             "list": [
-                {
-                    "path": "/profile",
-                    "name": "Profile"
-                },
                 {
                     "path": "/education",
                     "name": "Education"
