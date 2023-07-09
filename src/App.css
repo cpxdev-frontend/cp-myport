@@ -40,10 +40,17 @@
 .point{
   cursor: pointer !important;
 }
-.MuiAppBar-root{
+.AppBarLight{
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  background-color: #44ad67 !important;
+  background-image: linear-gradient(180deg, #44ad67 10% , #468f59 50%, #E8E8E8) !important;
+  box-shadow: none !important;
+}
+.AppBarDark{
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-image: linear-gradient(180deg, #44ad67 10% , #468f59 50%, #333333) !important;
+  box-shadow: none !important;
 }
 
 .selectedborder{

@@ -274,7 +274,7 @@ const location = useLocation()
     <Box>
       <CssBaseline />
      <Slide direction='down' in={true} timeout={localStorage.getItem('graphic') === null ? 900 : 0}>
-     <AppBar component="nav">
+     <AppBar component="nav" className={dark ? 'AppBarDark' : 'AppBarLight'}>
         <Toolbar>
           <IconButton
             color="inherit"
