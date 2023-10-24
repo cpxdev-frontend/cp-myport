@@ -37,13 +37,12 @@
             "src": "https://cdn.statically.io/gl/cpx2017/cpxcdnbucket@main/myport/work-5.webp",
             "link": ""
         },
-        
         {
-            "title": "แพลตฟอร์ม T-POP Megaverse",
-            "group": "React JS with .NET Core 3.1 Web API",
-            "desc": "เป็นแพลตฟอร์มสังคมออนไลน์สำหรับแลกเปลี่ยนหรือเผยแพร่ข่าวสารเกี่ยวกับศิลปิน T-POP",
-            "src": "https://images.pexels.com/photos/1587927/pexels-photo-1587927.jpeg",
-            "link": "https://cp-tpop.pages.dev"
+            "title": "CPXDev ID",
+            "group": ".NET 6 MVC / API",
+            "desc": "เป็นแพลตฟอร์ม PaaS ที่พัฒนาขึ้นเป็นเครื่องมือสำหรับอำนวนความสะดวกการจัดการผู้ใช้งาน ตั้งแต่การลงทะเบียน, เข้าสู่ระบบ, ออกจากระบบ และการแก้ไขข้อมูลผู้ใช้งาน แบบหลายแอป โดยที่ไม่จำเป็นต้องพัฒนาระบบขึ้นมาเอง และมี API ให้สามารถเข้าถึงระบบได้จากแพลตฟอร์มที่คุณสร้างได้",
+            "src": "https://i.imgur.com/RMHMX2c.png",
+            "link": "https://cpxdevid.azurewebsites.net"
         }
     ]
 }

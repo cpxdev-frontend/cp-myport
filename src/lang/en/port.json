@@ -37,13 +37,12 @@
             "src": "https://cdn.statically.io/gl/cpx2017/cpxcdnbucket@main/myport/work-5.webp",
             "link": ""
         },
-      
         {
-            "title": "T-POP Megaverse Platform",
-            "group": "React JS with .NET Core 3.1 Web API",
-            "desc": "Social Platform for follow and sharing update for T-POP artists without cost.",
-            "src": "https://images.pexels.com/photos/1587927/pexels-photo-1587927.jpeg",
-            "link": "https://cp-tpop.pages.dev"
+            "title": "CPXDev ID",
+            "group": ".NET 6 MVC / API",
+            "desc": "CPXDev ID is a PaaS (Platform as a Service) platform developed as a user management tool, providing user convenience from registration, login, logout, and user data modification across multiple apps without the need to develop a system from scratch. It also offers APIs for accessing the system from the platform you create.",
+            "src": "https://i.imgur.com/RMHMX2c.png",
+            "link": "https://cpxdevid.azurewebsites.net"
         }
     ]
 }
