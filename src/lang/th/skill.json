@@ -37,13 +37,6 @@
             "color": "primary"
         },
         {
-            "title": "Microsoft Office",
-            "group": "Another Skill",
-            "desc": "ใช้โปรแกรม Microsoft Office Word/Excel/Powerpoint ได้ในเบื้องต้น",
-            "learnrate": [2,2,0,0,0],
-            "color": "error"
-        },
-        {
             "title": "Another programming/IT skill",
             "group": "Another Skill",
             "desc": "ในส่วนอื่นๆเกี่ยวกับคอมพิวเตอร์หรือภาษาโปรแกรมอื่นๆ อาจเคยศึกษามาบ้างหรือเคยได้ยิน และจำเป็นต้องใช้เวลาในการศึกษาเพิ่มเติม",

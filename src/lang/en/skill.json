@@ -37,13 +37,6 @@
             "color": "primary"
         },
         {
-            "title": "Microsoft Office",
-            "group": "Another Skill",
-            "desc": "I can use microsoft office software in basic level. Liked Word, Excel or powerpoint.",
-            "learnrate": [2,2,0,0,0],
-            "color": "error"
-        },
-        {
             "title": "Another programming/IT skill",
             "group": "Another Skill",
             "desc": "Some IT knowledge, I need to learn it more to understand.",
