@@ -12,7 +12,7 @@ import store from './redux/store'
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'anakotmai',
+    fontFamily: 'misans',
   },
   palette: {
     secondary: {
