@@ -374,11 +374,11 @@ const location = useLocation()
         Copyright 2023 CPXDev Studio, Allright Reserved
       </footer>
 
-      <Snowfall
+      {/* <Snowfall
         color="#fff"
         snowflakeCount={window.innerWidth / 60}
         style={{position: 'fixed'}}
-      />
+      /> */}
 
 
 
