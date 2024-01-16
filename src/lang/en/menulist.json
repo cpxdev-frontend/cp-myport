@@ -73,7 +73,7 @@
         "head": "About MyPort Website and Public API",
         "developName": "Developed by Chinnathorn Promnaruritr",
         "desc": "MyPort Website is Chinnathorn's online Portfolio. It's design on React JS framework (Operated by Cloudflare Pages)  and run undered by .NET 6 Web API. We also have Public API called 'MyPort API' to access our contents similiar this site focused.",
-        "uptLog": "Update description: Major update for User Interface Experience."
+        "uptLog": "Update description: Change web font and bug fixed."
     },
     "setting": {
         "changeL": "Select language",

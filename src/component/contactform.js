@@ -116,7 +116,7 @@ const DirectForm = ({ setCol, open, Transition, ditlt, dark, setOpen, endpoint, 
               Tel: getinput('tel'),
               Subject: getinput('head'),
               Message: getinput('desc'),
-              lang: localStorage.getItem('langconfig'),
+              lang: CurrentLang,
               img: document.getElementById('img').src == window.location.href ? '' : document.getElementById('img').src
             }
 
@@ -208,7 +208,7 @@ const DirectForm = ({ setCol, open, Transition, ditlt, dark, setOpen, endpoint, 
     const color = "secondary";
     return (
       <Dialog fullScreen open={open} onClose={CloseD} TransitionComponent={Transition} className={dark ? 'darkfull' : ''}>
-          <AppBar>
+          <AppBar sx={{backgroundColor: '#44ad67'}}>
             <Toolbar>
               <IconButton
                 edge="start"
