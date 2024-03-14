@@ -42,7 +42,7 @@
             "group": ".NET 6 MVC / API",
             "desc": "CPXDev ID is a PaaS (Platform as a Service) platform developed as a user management tool, providing user convenience from registration, login, logout, and user data modification across multiple apps without the need to develop a system from scratch. It also offers APIs for accessing the system from the platform you create.",
             "src": "https://i.imgur.com/RMHMX2c.png",
-            "link": "https://cpxdevid.azurewebsites.net"
+            "link": "https://cpxdevid.onrender.com"
         }
     ]
 }
