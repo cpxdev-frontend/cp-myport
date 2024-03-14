@@ -145,6 +145,23 @@ const Hob = ({col, setCol,setPage, dark, CurrentLang}) => {
           </AccordionDetails>
         </Accordion>
         
+        <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')} sx={{backgroundColor: dark ? '#011345' : ''}}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon className={dark ? 'text-light' : ''} />}
+            aria-controls="panel4a-content"
+            id="panel4a-header"
+          >
+          <Grow in={true} timeout={localStorage.getItem('graphic') === null ? 800 : 0}>
+            <Typography variant="h6" className={dark ? 'text-light' : ''}>{Lang.technical.title}</Typography>
+          </Grow>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography variant="body1" className={dark ? 'text-dark-secondary' : ''}>
+              <b>{Lang.technical.title}</b>: <a className={"remove-ude" + (dark ? ' text-dark-secondary' : '')} target="_blank" rel="noopener noreferrer" href={'mailto:' + Lang.technical.hy + '?subject'}>{Lang.technical.desc}</a>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+
         <Accordion expanded={false} onClick={handleClickOpen} sx={{backgroundColor: dark ? '#011345' : ''}}>
           <AccordionSummary
             aria-controls="panel3a-content"

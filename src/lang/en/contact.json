@@ -27,6 +27,11 @@
             }
         ]
     },
+    "technical": {
+        "title": "Email Contact (For technical issue of this website)",
+        "desc": "cpxdev@outlook.com",
+        "hy": "cpxdev@outlook.com"
+    },
     "other": "Contact me with Direct Contact",
     "otherdesc": "Contact me with Direct Contact (Click here to open)",
     "directinbusy": "Direct Contact is processing. You cannot stop it right now."

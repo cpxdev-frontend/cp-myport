@@ -27,6 +27,11 @@
             }
         ]
     },
+    "technical": {
+        "title": "ติดต่อผ่านอีเมล์ (สำหรับรายงานข้อผิดพลาดของเว็บไซต์)",
+        "desc": "cpxdev@outlook.com",
+        "hy": "cpxdev@outlook.com"
+    },
     "other": "ฟอร์มสำหรับติดต่อผ่านระบบ Direct Contact",
     "otherdesc": "ฟอร์มสำหรับติดต่อผ่านระบบ Direct Contact (คลิกที่นี่เพื่อเปิดฟอร์ม)",
     "directinbusy": "ระบบ Direct Contact อยู่ระหว่างการประมวลผล ไม่สามารถปิดฟอร์มได้"
